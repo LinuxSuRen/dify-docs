@@ -21,5 +21,23 @@ lang-check/.env
 # Mac files
 .DS_Store
 
-# node
+# Node
 node_modules/
+packages/*/node_modules/
+
+# Monorepo
+.turbo/
+
+# GitBook
+_book/
+packages/gitbook/_book/
+
+# Mintlify
+packages/mintlify/.mintlify/
+packages/mintlify/node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

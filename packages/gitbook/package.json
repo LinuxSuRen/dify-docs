@@ -1,0 +1,12 @@
+{
+  "name": "@dify-docs/gitbook",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "gitbook serve",
+    "build": "gitbook build"
+  },
+  "dependencies": {
+    "gitbook-cli": "^2.3.2"
+  }
+}

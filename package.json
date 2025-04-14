@@ -1,1 +1,15 @@
-{}
+{
+  "name": "dify-docs-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:gitbook": "cd packages/gitbook && npm run dev",
+    "dev:mintlify": "cd packages/mintlify && mintlify dev",
+    "build:gitbook": "cd packages/gitbook && npm run build",
+    "build:mintlify": "cd packages/mintlify && mintlify build",
+    "sync": "node tools/sync-docs.js"
+  }
+}

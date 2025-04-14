@@ -27,6 +27,16 @@ Thank you to all contributors for your support and collaboration!
 
 ---
 
+## Run Mintlify Locally
+
+commands:
+
+```bash
+npm run dev:mintlify
+```
+
+---
+
 ## License
 
 The Dify product documentation in the assets, content, and data folders are licensed under a [CC-BY license](LICENSE).

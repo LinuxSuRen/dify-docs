@@ -1,0 +1,33 @@
+---
+title: File Upload
+---
+
+[前面的内容保持不变...]
+
+![](https://assets-docs.dify.ai/dify-enterprise-mintlify/en/guides/workflow/f6ea094b30b240c999a4248d1fc21a1c.png)
+
+After completing these settings, application users can paste file URLs or upload local files in the WebApp, then interact with the LLM about the document content. Users can replace files at any time during the conversation, and the LLM will obtain the latest file content.
+
+**Referencing File Variables in LLM Nodes**
+
+For certain file types (such as images), file variables can be directly used within LLM nodes. This method is particularly suitable for scenarios requiring visual analysis. Here are the specific steps:
+
+1. In the LLM node, enable the vision functionality. This allows the model to process image inputs (the model must support vision capabilities).
+2. In the variable selector of the LLM node, directly reference the previously created file variable. If file upload was enabled through additional features, select the `sys.files` variable.
+3. In the system prompt, guide the model on how to process the image input. For example, you can instruct the model to describe the image content or answer questions about the image.
+
+Below is an example configuration:
+
+![Using file variables directly in LLM node](https://assets-docs.dify.ai/dify-enterprise-mintlify/en/guides/workflow/f8980732757050049a430eea934511cf.png)
+
+It's important to note that when directly using file variables in LLM node, the developers need to ensure that the file variable contains only image files; otherwise, errors may occur. If users might upload different types of files, we need to use list operator node for filtering files.
+
+**File Download**
+
+Placing file variables in answer nodes or end nodes will provide a file download card in the conversation box when the application reaches that node. Clicking the card allows for file download.
+
+![file download](https://assets-docs.dify.ai/dify-enterprise-mintlify/en/guides/workflow/bc39be7fd4879b3875e6b77daaff5d37.png)
+
+## Advanced Usage
+
+If you want the application to support uploading multiple types of files, such as allowing users to upload document files, images, and audio/video files simultaneously, you need to add a "File List" variable in the "Start Node" and use the "List Operation" node to process different file types. For detailed instructions, please refer to the List Operation node.

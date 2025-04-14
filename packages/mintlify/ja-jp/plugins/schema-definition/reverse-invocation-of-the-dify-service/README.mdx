@@ -1,0 +1,21 @@
+---
+title: Difyサービスへのバックコール
+---
+
+
+プラグインは、Difyメインプラットフォーム内の特定のサービスを自由に呼び出し、プラグインの機能を拡張できます。
+
+### 呼び出し可能なDifyモジュール
+
+*   [App](/ja-jp/plugins/schema-definition/reverse-invocation-of-the-dify-service/app)
+
+    プラグインは、Difyプラットフォーム内のAppデータにアクセスできます。
+*   [Model](/ja-jp/plugins/schema-definition/reverse-invocation-of-the-dify-service/model)
+
+    プラグインは、Difyプラットフォーム内のLLM機能をバックコールできます。これには、プラットフォーム内のすべてのモデルタイプと機能（TTS、Rerankなど）が含まれます。
+*   [Tool](/ja-jp/plugins/schema-definition/reverse-invocation-of-the-dify-service/tool)
+
+    プラグインは、Difyプラットフォーム内の他のツールタイプのプラグインを呼び出すことができます。
+*   [Node](/ja-jp/plugins/schema-definition/reverse-invocation-of-the-dify-service/node)
+
+    プラグインは、Difyプラットフォーム内の特定のChatflow/Workflowアプリケーション内のノードを呼び出すことができます。

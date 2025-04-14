@@ -1,0 +1,25 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+lang-check/.env
+
+# Pyre type checker
+.pyre/
+.idea/'
+
+# Intellij IDEA Files
+.idea/
+.ideaDataSources/
+
+.vscode/
+
+# Mac files
+.DS_Store
+
+# node
+node_modules/
