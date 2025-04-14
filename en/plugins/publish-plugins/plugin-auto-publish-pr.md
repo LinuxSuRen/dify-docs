@@ -1,4 +1,4 @@
-# Automatic Plugin Publishing
+# Publish Plugins Automatically
 
 ## Background
 
