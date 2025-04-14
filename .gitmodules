@@ -1,0 +1,3 @@
+[submodule "mintlify"]
+	path = mintlify
+	url = https://github.com/Landahans/dify-docs-mintlify.git
