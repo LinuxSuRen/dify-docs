@@ -102,13 +102,11 @@ Once set up, the workflow automatically handles these parameters:
 
 ## Step-by-Step Guide
 
-{% stepper %}
-{% step %}
-### Prepare Repositories
+### 1. Prepare Repositories
+
 Ensure you have forked the official `dify-plugins` repository and have your own plugin source repository.
-{% endstep %}
-{% step %}
-### Configure Secret
+
+### 2. Configure Secret
 
 Navigate to your plugin source repository, click **Settings > Secrets and variables > Actions > New repository secret**, and create a GitHub Secret:
 
@@ -117,9 +115,9 @@ Navigate to your plugin source repository, click **Settings > Secrets and variab
 - Value: GitHub Personal Access Token (PAT) with write permissions to the target repository (`your-name/dify-plugins`)
 
 ![Create Secrets](https://assets-docs.dify.ai/2025/04/8abd72b677dd24752910c304c76f1c26.png)
-{% endstep %}
-{% step %}
-### Create Workflow File
+
+### 3. Create Workflow File
+
 Create a `.github/workflows/` directory in your repository, create a file named `plugin-publish.yml` in this directory, and copy the following content into the file:
 
 ```yaml
@@ -267,9 +265,9 @@ jobs:
           echo "Current directory contents:"
           ls -R
 ```
-{% endstep %}
-{% step %}
-### Update manifest.yaml
+
+### 4. Update manifest.yaml
+
 Ensure the `manifest.yaml` file correctly sets the following fields:
 
 ```yaml
@@ -277,8 +275,6 @@ version: 0.0.x  # Version number
 author: your-github-username  # GitHub username/Author name
 name: your-plugin-name  # Plugin name
 ```
-{% endstep %}
-{% endstepper %}
 
 ## Usage Guide
 

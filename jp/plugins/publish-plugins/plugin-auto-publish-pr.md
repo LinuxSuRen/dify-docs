@@ -100,13 +100,11 @@ dify-plugins/
 
 ## インストールと設定手順
 
-{% stepper %}
-{% step %}
-### リポジトリの準備
+### 1. リポジトリの準備
+
 公式の`dify-plugins`リポジトリをフォークし、独自のプラグインソースリポジトリがあることを確認します。
-{% endstep %}
-{% step %}
-### シークレットの設定
+
+### 2. シークレットの設定
 
 プラグインソースリポジトリに移動し、**Settings > Secrets and variables > Actions > New repository secret**をクリックして、GitHubシークレットを作成します：
 
@@ -114,9 +112,9 @@ dify-plugins/
 - 値：ターゲットリポジトリ（`your-name/dify-plugins`）への書き込み権限を持つGitHub Personal Access Token（PAT）
 
 ![シークレットの作成](https://assets-docs.dify.ai/2025/04/8abd72b677dd24752910c304c76f1c26.png)
-{% endstep %}
-{% step %}
-### ワークフローファイルの作成
+
+### 3. ワークフローファイルの作成
+
 リポジトリに`.github/workflows/`ディレクトリを作成し、このディレクトリに`plugin-publish.yml`という名前のファイルを作成し、以下の内容をファイルにコピーします：
 
 ```yaml
@@ -266,9 +264,9 @@ Directory structure:\"
           echo \"Current directory contents:\"
           ls -R
 ```
-{% endstep %}
-{% step %}
-### manifest.yamlの更新
+
+### 4. manifest.yamlの更新
+
 `manifest.yaml`ファイルが以下のフィールドを正しく設定していることを確認します：
 
 ```yaml
@@ -276,8 +274,6 @@ version: 0.0.x  # バージョン番号
 author: your-github-username  # GitHubユーザー名/作者名
 name: your-plugin-name  # プラグイン名
 ```
-{% endstep %}
-{% endstepper %}
 
 ## 使用ガイド
 

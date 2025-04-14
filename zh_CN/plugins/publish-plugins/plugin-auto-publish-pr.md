@@ -102,13 +102,11 @@ dify-plugins/
 
 ## 安装配置步骤
 
-{% stepper %}
-{% step %}
-### 准备仓库
+### 1. 准备仓库
+
 确保你已经 fork 了官方的 `dify-plugins` 仓库，并且有自己的插件源码仓库。
-{% endstep %}
-{% step %}
-### 配置 Secret
+
+### 2. 配置 Secret
 
 导航到你的插件源码仓库，点击 **Settings > Secrets and variables > Actions > New repository secret**，创建 GitHub Secret：
 
@@ -117,9 +115,9 @@ dify-plugins/
 - 值填写： 拥有目标仓库（`your-name/dify-plugins`）写入权限的 GitHub Personal Access Token (PAT)
 
 ![Create Secrets](https://assets-docs.dify.ai/2025/04/8abd72b677dd24752910c304c76f1c26.png)
-{% endstep %}
-{% step %}
-### 创建工作流文件
+
+### 3. 创建工作流文件
+
 在仓库中创建 `.github/workflows/`目录，并在此目录中创建名为 `plugin-publish.yml` 的文件，再将以下内容复制到该文件中：
 
 ```yaml
@@ -267,9 +265,9 @@ jobs:
           echo "Current directory contents:"
           ls -R
 ```
-{% endstep %}
-{% step %}
-### 更新 manifest.yaml
+
+### 4. 更新 manifest.yaml
+
 确保 `manifest.yaml` 文件正确设置以下字段：
 
 ```yaml
@@ -277,9 +275,6 @@ version: 0.0.x  # Version number
 author: your-github-username  # GitHub username/Author name
 name: your-plugin-name  # Plugin name
 ```
-{% endstep %}
-{% endstepper %}
-
 ## 使用指南
 
 ### 初次使用流程
