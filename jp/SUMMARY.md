@@ -185,6 +185,7 @@
     * [ノード](plugins/schema-definition/reverse-invocation-of-the-dify-service/node.md)
 * [ベストプラクティス](plugins/best-practice/README.md)
   * [Slack Bot プラグインの開発](plugins/best-practice/develop-a-slack-bot-plugin.md)
+  * [Dify MCP プラグインガイド：ワンクリックで Zapier に接続してメールを自動送信](plugins/best-practice/how-to-use-mcp-zapier.md)
 * [プラグインの公開](plugins/publish-plugins/README.md)
   * [Difyマーケットプレイスへの公開](plugins/publish-plugins/publish-to-dify-marketplace/README.md)
     * [プラグイン開発者ガイドライン](plugins/publish-plugins/publish-to-dify-marketplace/plugin-developer-guidelines.md)

@@ -2,13 +2,13 @@
 
 **This article will help you:**
 
-Install the MCP SSE plugin for your Dify workspace, remotely call the Zapier MCP service to enable automated email sending.
+This guide walks you through installing the MCP SSE plugin in your Dify workspace and configuring it to connect with Zapier’s MCP service for seamless automated email workflows.
 
-## Project Background
+## Background
 
 Anthropic introduced the Model Context Protocol (MCP) in late 2024. As an emerging open protocol, MCP builds a bidirectional communication channel between LLMs and external applications, functioning like a "USB-C" interface for AI, helping models discover, understand, and safely call various external tools or APIs.
 
-This means: Developers no longer need to write complex custom interfaces to connect with each external service. Users can experience AI's ability to easily call a vast array of third-party applications, whether processing daily office tasks, analyzing data, or executing marketing automation. AI is moving from "intelligent conversation" to "efficient action."
+In other words, developers no longer need to build complex custom integrations for each external service. Users can experience AI's ability to easily call a vast array of third-party applications, whether processing daily office tasks, analyzing data, or executing marketing automation. AI is moving from "intelligent conversation" to "efficient action."
 
 In the Dify community, MCP has garnered significant attention. Community developers have contributed multiple MCP plugins to the plugin marketplace, allowing you to easily connect external MCP services to Dify Agent applications or workflows.
 
@@ -32,7 +32,7 @@ Zapier's MCP Server packages its existing 7000+ applications and 30,000+ actions
 
 3. Click "Edit MCP Actions" below the URL to enter the tools and actions addition page.
 
-4. Click "Add a new action", search for `Gmail: Send Email`. You can also choose to add different email operations based on your actual needs.
+4. Click **Add a new action**, then search for Gmail: Send Email.
 
 ![](https://assets-docs.dify.ai/2025/04/718e214166ca6eed6771d44f3b6ab718.png)
 
@@ -40,7 +40,7 @@ Zapier's MCP Server packages its existing 7000+ applications and 30,000+ actions
 
 Click "Connect" under the Gmail account, then log in and authorize your Gmail inbox.
 
-For email fields such as recipient (To), subject, and body, you can select "Have AI guess a value for this field", and the specific content will be dynamically determined by the Agent based on the actual conversation and scenario.
+For fields like recipient, subject, and body, you can choose “Have AI guess a value for this field”. The Agent will then generate content dynamically based on the conversation context.
 
 ![](https://assets-docs.dify.ai/2025/04/637ce6b46ab706f4512a2dceb25a8162.png)
 
@@ -52,7 +52,7 @@ For email fields such as recipient (To), subject, and body, you can select "Have
 
 ![](https://assets-docs.dify.ai/2025/04/20174032b8feb624a52ac36d65e7c0fa.png)
 
-> To ensure service stability, we recommend using plugin version v0.0.4; you can adjust the version on the plugin details page in your workspace.
+> For optimal stability, we recommend using plugin version **v0.0.4**. You can change the version in the plugin’s detail settings.
 > ![](https://assets-docs.dify.ai/2025/04/b076d40ea120dea544df49bc52199ad6.png)
 
 
@@ -97,7 +97,7 @@ After configuration, you can automatically generate email drafts and send them t
 
 ![](https://assets-docs.dify.ai/2025/04/fc76cc8e7dd7476199e9810fa5403f3b.png)
 
-Ask the LLM to complete the email sending task in the chat box. After the MCP finishes running, the email will be automatically sent to the recipient.
+Simply instruct the Agent via chat to send an email, and it will handle the task using the configured MCP service. After the MCP finishes running, the email will be automatically sent to the recipient.
 
 ![](https://assets-docs.dify.ai/2025/04/dc80a8fb00800e8938f3918fc908bc1b.png)
 

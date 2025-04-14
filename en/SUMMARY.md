@@ -186,7 +186,7 @@
     * [Node](plugins/schema-definition/reverse-invocation-of-the-dify-service/node.md)
 * [Best Practice](plugins/best-practice/README.md)
   * [Develop a Slack Bot Plugin](plugins/best-practice/develop-a-slack-bot-plugin.md)
-  * [Dify MCP Plugin Guide: Automated Email Sending](plugins/best-practice/how-to-use-mcp-zapier.md)
+  * [Dify MCP Plugin Guide: Connect Zapier and Automate Email Delivery with Ease](plugins/best-practice/how-to-use-mcp-zapier.md)
 * [Publish Plugins](plugins/publish-plugins/README.md)
   * [Publish to Dify Marketplace](plugins/publish-plugins/publish-to-dify-marketplace/README.md)
     * [Plugin Developer Guidelines](plugins/publish-plugins/publish-to-dify-marketplace/plugin-developer-guidelines.md)
