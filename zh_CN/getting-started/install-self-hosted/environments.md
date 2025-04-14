@@ -430,19 +430,19 @@ Flask 调试模式，开启可在接口输出 trace 信息，方便调试。
 
 *   TABLESTORE\_ENDPOINT
 
-    Tablestore访问Endpoint。
+    Tablestore 访问 Endpoint。
 
 *   TABLESTORE\_INSTANCE\_NAME
 
-    Tablestore访问实例名。
+    Tablestore 访问实例名。
 
 *   TABLESTORE\_ACCESS\_KEY\_ID
 
-    Tablestore访问ID。
+    Tablestore 访问 ID。
 
 *   TABLESTORE\_ACCESS\_KEY\_SECRET
 
-    Tablestore访问密钥。
+    Tablestore 访问密钥。
 
 #### 知识库配置
 
