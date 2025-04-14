@@ -1,52 +1,52 @@
-# 自动发布插件
+# Automatic Plugin Publishing
 
-## 背景
+## Background
 
-当插件贡献者需要严肃更新 **已被其他用户使用的 Dify 插件** 时，流程通常非常繁琐：贡献者需要先修改插件源码并更新版本号，将更改推送到插件源码仓库，并在 fork 的 dify-plugin 仓库中创建新分支。随后，贡献者需要手动打包插件并上传打包文件，再创建 PR 合并到原始 dify-plugin 仓库。这个过程必须在每次插件代码变更时重复，非常耗时低效。
+Updating plugins that others are actively using can be tedious. Traditionally, you would need to modify code, bump versions, push changes, create branches, package files, and submit PRs manually - a repetitive process that slows down development.
 
-为了简化这一流程，我们构建了基于 GitHub Actions 的自动化工作流 **Plugin Auto-PR**。借助这个工具，插件贡献者可以一键完成插件打包、分支推送以及 PR 创建。
+Thus, we have created **Plugin Auto-PR**, a GitHub Actions workflow that automates the entire process. Now you can package, push, and create PRs with a single action, letting you focus on what matters - building great plugins.
 
-## 概念简介
+## Concepts
 
 ### GitHub Actions
 
-GitHub Actions 是 GitHub 提供的内置 CI/CD 服务，可以自动化各种构建、测试和部署任务。
+GitHub Actions automates your development tasks in GitHub. 
 
-**运行原理**：当触发条件（如 push 代码）满足时，GitHub 会自动分配虚拟机运行你的工作流。所有操作都在 GitHub 云端完成。
+**How it works**: When triggered (e.g., by a code push), it runs your workflow in a cloud-based virtual machine, handling everything from build to deployment automatically.
 
 ![Workflow](https://assets-docs.dify.ai/2025/04/60534de8e220f860947b32a8329a8349.png)
 
-**免费额度**：
+**Limits**:
 
-- 公共仓库：无限制
+- Public repositories: Unlimited
 
-- 私有仓库：每月 2000 分钟
+- Private repositories: 2000 minutes per month
 
 ### Plugin Auto-PR
 
-**运行原理**：
+**How it works**:
 
-1. 当你推送代码到插件源码仓库的 main 分支时，触发工作流
+1. Workflow triggers when you push code to the main branch of your plugin source repository
 
-2. 工作流从 `manifest.yaml` 文件中读取插件信息
+2. Workflow reads plugin information from the `manifest.yaml` file
 
-3. 自动打包插件为 `.difypkg` 文件
+3. Automatically packages the plugin as a `.difypkg` file
 
-4. 将打包文件推送到你 fork 的 `dify-plugins` 仓库中
+4. Pushes the packaged file to your forked `dify-plugins` repository
 
-5. 创建新分支并提交更改
+5. Creates a new branch and commits changes
 
-6. 自动创建 PR 请求合并到上游仓库
+6. Automatically creates a PR to merge into the upstream repository
 
-## 环境准备
+## Prerequisites
 
-### 仓库要求
+### Repository
 
-- 你已拥有自己的插件源码仓库（例如：`your-name/plugin-source`）
+- You already have your own plugin source code repository (e.g., `your-name/plugin-source`)
 
-- 你已拥有自己的 fork 插件仓库（例如：`your-name/dify-plugins`）
+- You already have your own forked plugin repository (e.g., `your-name/dify-plugins`)
 
-- 你的 fork 仓库中已有插件目录结构：
+- Your forked repository already has the plugin directory structure:
 
 ```
 dify-plugins/
@@ -54,73 +54,73 @@ dify-plugins/
     └── plugin-name
 ```
 
-### 权限要求
+### Permission
 
-此工作流需要适当的权限才能正常运行：
+This workflow requires appropriate permissions to function:
 
-- 你需要创建一个有足够权限的 GitHub Personal Access Token (PAT)
+- You need to create a GitHub Personal Access Token (PAT) with sufficient permissions
 
-- 该 PAT 必须有权向你的 fork 仓库推送代码
+- The PAT must have permission to push code to your forked repository
 
-- 该 PAT 必须有权向上游仓库创建 PR
+- The PAT must have permission to create PRs to the upstream repository
 
-## 参数与配置项说明
+## Parameters and Configuration
 
-### 必要参数
+### Setup Requirements
 
-插件自动发布工作流需要你正确配置以下关键元素：
+To get started with auto-publishing, you will need two key components:
 
-**manifest.yaml文件**：这是整个自动化流程的核心配置源。你需要确保以下字段正确无误：
+**manifest.yaml file**: This file drives the automation process:
 
-- `name`：插件名称（将用于生成包名和分支名）
+- `name`: Your plugin’s name (affects package and branch names)
 
-- `version`：版本号（每次更新时需要递增）
+- `version`: Semantic version number (increment with each release)
 
-- `author`：GitHub 用户名（用于确定目标仓库路径）
+- `author`: Your GitHub username (determines repository paths)
 
-**PLUGIN_ACTION Secret**：你需要在插件源码仓库中正确设置此密钥。
+**PLUGIN_ACTION Secret**: You need to add this secret to your plugin source repository:
 
-- 值要求：必须是具有足够权限的个人访问令牌（PAT）
+- Value: Must be a Personal Access Token (PAT) with sufficient permissions
 
-- 权限要求：能够推送分支到你的 fork 仓库，能够创建 PR 到上游仓库
+- Permission: Ability to push branches to your forked repository and create PRs to the upstream repository
 
-#### 自动生成的参数
+#### Automatically-Generated Parameters
 
-工作流会**自动处理以下内容**，无需手动干预：
+Once set up, the workflow automatically handles these parameters:
 
-- GitHub 用户名：从 `manifest.yaml` 的 `author` 字段读取
+- GitHub username: Read from the `author` field in `manifest.yaml`
 
-- 作者文件夹名称：与 `author` 字段保持一致
+- Author folder name: Consistent with the `author` field
 
-- 插件名称：从 `manifest.yaml` 的 `name` 字段读取
+- Plugin name: Read from the `name` field in `manifest.yaml`
 
-- 分支名称：`bump-{插件名}-plugin-{版本号}`
+- Branch name: `bump-{plugin-name}-plugin-{version}`
 
-- 打包文件名：`{插件名}-{版本号}.difypkg`
+- Package filename: `{plugin-name}-{version}.difypkg`
 
-- PR 标题和内容：基于插件名称和版本自动生成
+- PR title and content: Automatically generated based on plugin name and version
 
-## 安装配置步骤
+## Step-by-Step Guide
 
 {% stepper %}
 {% step %}
-### 准备仓库
-确保你已经 fork 了官方的 `dify-plugins` 仓库，并且有自己的插件源码仓库。
+### Prepare Repositories
+Ensure you have forked the official `dify-plugins` repository and have your own plugin source repository.
 {% endstep %}
 {% step %}
-### 配置 Secret
+### Configure Secret
 
-导航到你的插件源码仓库，点击 **Settings > Secrets and variables > Actions > New repository secret**，创建 GitHub Secret：
+Navigate to your plugin source repository, click **Settings > Secrets and variables > Actions > New repository secret**, and create a GitHub Secret:
 
-- 名称填写： `PLUGIN_ACTION`
+- Name: `PLUGIN_ACTION`
 
-- 值填写： 拥有目标仓库（`your-name/dify-plugins`）写入权限的 GitHub Personal Access Token (PAT)
+- Value: GitHub Personal Access Token (PAT) with write permissions to the target repository (`your-name/dify-plugins`)
 
 ![Create Secrets](https://assets-docs.dify.ai/2025/04/8abd72b677dd24752910c304c76f1c26.png)
 {% endstep %}
 {% step %}
-### 创建工作流文件
-在仓库中创建 `.github/workflows/`目录，并在此目录中创建名为 `plugin-publish.yml` 的文件，再将以下内容复制到该文件中：
+### Create Workflow File
+Create a `.github/workflows/` directory in your repository, create a file named `plugin-publish.yml` in this directory, and copy the following content into the file:
 
 ```yaml
 # .github/workflows/auto-pr.yml
@@ -269,8 +269,8 @@ jobs:
 ```
 {% endstep %}
 {% step %}
-### 更新 manifest.yaml
-确保 `manifest.yaml` 文件正确设置以下字段：
+### Update manifest.yaml
+Ensure the `manifest.yaml` file correctly sets the following fields:
 
 ```yaml
 version: 0.0.x  # Version number
@@ -280,48 +280,48 @@ name: your-plugin-name  # Plugin name
 {% endstep %}
 {% endstepper %}
 
-## 使用指南
+## Usage Guide
 
-### 初次使用流程
+### First-time Setup
 
-首次设置自动发布工作流时，需要完成以下步骤：
+When setting up the auto-publish workflow for the first time, complete these steps:
 
-1. 确保你已经 fork 了官方的 `dify-plugins` 仓库
+1. Ensure you have forked the official `dify-plugins` repository
 
-2. 确保你的插件源码仓库结构正确
+2. Ensure your plugin source repository structure is correct
 
-3. 在插件源码仓库中设置 `PLUGIN_ACTION Secret`
+3. Set up the `PLUGIN_ACTION Secret` in your plugin source repository
 
-4. 创建工作流文件 `.github/workflows/plugin-publish.yml`
+4. Create the workflow file `.github/workflows/plugin-publish.yml`
 
-5. 确保 `manifest.yaml` 文件中的 `name` 和 `author` 字段正确配置。
+5. Ensure the `name` and `author` fields in the `manifest.yaml` file are correctly configured
 
-### 后续更新流程
+### Subsequent Update
 
-设置完成后，每次需要发布新版本时，只需：
+To publish new versions after setup:
 
-1. 修改插件代码
+1. Modify the code
 
-2. 更新 `manifest.yaml` 中的 `version` 字段
+2. Update the `version` field in `manifest.yaml`
 
 ![Release](https://assets-docs.dify.ai/2025/04/9eed2b9110e91e18008b399e58198f03.png)
 
-3. 将所有更改推送到 main 分支
+3. Push all changes to the main branch
 
-4. 等待 GitHub Actions 自动完成打包、分支创建和 PR 提交
+4. Wait for GitHub Actions to complete packaging, branch creation, and PR submission
 
-## 执行效果展示
+## Outcome
 
-当你推送代码到插件源码仓库的 main 分支时，GitHub Actions 将自动执行发布流程：
+When you push code to the main branch of your plugin source repository, GitHub Actions will automatically execute the publishing process:
 
-- 自动打包插件为 `{plugin-name}-{version}.difypkg` 格式
+- Package the plugin in `{plugin-name}-{version}.difypkg` format
 
-- 自动将打包文件推送到目标仓库
+- Push the packaged file to the target repository
 
-- 自动创建 PR 合并到 fork 仓库
+- Create a PR to merge into the fork repository
 
 ![Outcome](https://assets-docs.dify.ai/2025/04/60d5de910c6ce2482c67ddec3320311f.png)
 
-## 示例仓库
+## Example Repository
 
-你可以参考[示例仓库](https://github.com/Yevanchen/exa-in-dify)，了解完整的配置细节和最佳实践。
+See [example repository](https://github.com/Yevanchen/exa-in-dify) to understand configuration and best practices.

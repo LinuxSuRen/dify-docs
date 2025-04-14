@@ -187,6 +187,7 @@
 * [Best Practice](plugins/best-practice/README.md)
   * [Develop a Slack Bot Plugin](plugins/best-practice/develop-a-slack-bot-plugin.md)
 * [Publish Plugins](plugins/publish-plugins/README.md)
+  * [Publish Plugins Automatically](plugins/plugin-auto-publish-pr.md)
   * [Publish to Dify Marketplace](plugins/publish-plugins/publish-to-dify-marketplace/README.md)
     * [Plugin Developer Guidelines](plugins/publish-plugins/publish-to-dify-marketplace/plugin-developer-guidelines.md)
     * [Plugin Privacy Protection Guidelines](plugins/publish-plugins/publish-to-dify-marketplace/plugin-privacy-protection-guidelines.md)
