@@ -188,7 +188,6 @@
   * [Develop a Slack Bot Plugin](plugins/best-practice/develop-a-slack-bot-plugin.md)
   * [Dify MCP Plugin Guide: Connect Zapier and Automate Email Delivery with Ease](plugins/best-practice/how-to-use-mcp-zapier.md)
 * [Publish Plugins](plugins/publish-plugins/README.md)
-  * [Publish Plugins Automatically](plugins/plugin-auto-publish-pr.md)
   * [Publish to Dify Marketplace](plugins/publish-plugins/publish-to-dify-marketplace/README.md)
     * [Plugin Developer Guidelines](plugins/publish-plugins/publish-to-dify-marketplace/plugin-developer-guidelines.md)
     * [Plugin Privacy Protection Guidelines](plugins/publish-plugins/publish-to-dify-marketplace/plugin-privacy-protection-guidelines.md)
