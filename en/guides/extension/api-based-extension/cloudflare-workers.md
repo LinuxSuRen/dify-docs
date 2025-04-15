@@ -38,14 +38,41 @@ const result = await fetch(url).then(res => res.text())
 This repository simplifies all configurations except for business logic. You can directly use `npm` commands to deploy your API extension.
 
 ```bash
+npm install
 npm run deploy
 ```
 
-After successful deployment, you will get a public internet address, which you can add in Dify as an API Endpoint. Please note not to miss the `endpoint` path.
+After successful deployment, you will get a public internet address, which you can add in Dify as an API Endpoint. Please note not to miss the `endpoint` path, which is specifically defined in `src/index.ts`.
 
 <figure><img src="../../../.gitbook/assets/api_extension_edit (1).png" alt=""><figcaption><p>Adding API Endpoint in Dify</p></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/app_tools_edit (1).png" alt=""><figcaption><p>Adding API Tool in the App edit page</p></figcaption></figure>
+
+Additionally, you can use the `npm run dev` command to deploy locally for testing.
+
+```bash
+npm install
+npm run dev
+```
+
+Related output:
+
+```bash
+$ npm run dev
+> dev
+> wrangler dev src/index.ts
+
+ ⛅️ wrangler 3.99.0
+-------------------
+
+Your worker has access to the following bindings:
+- Vars:
+  - TOKEN: "ban****ool"
+⎔ Starting local server...
+[wrangler:inf] Ready on http://localhost:58445
+```
+
+After this, you can use tools like Postman to debug the local interface.
 
 ## Other Logic TL;DR
 

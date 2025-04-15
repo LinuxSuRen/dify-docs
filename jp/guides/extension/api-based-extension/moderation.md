@@ -12,6 +12,8 @@
 
 ### app.moderation.input 拡張点 <a href="#usercontentappmoderationinput-kuo-zhan-dian" id="usercontentappmoderationinput-kuo-zhan-dian"></a>
 
+ChatflowやAgent、チャットアシスタントなどのアプリケーションで**コンテンツ審査>入力内容の審査**を有効にすると、Difyは対応するAPI拡張に以下のHTTP POSTリクエストを送信します：
+
 #### リクエストボディ <a href="#user-content-request-body" id="user-content-request-body"></a>
 
 ```
@@ -44,7 +46,7 @@
     }
     ```
 
-#### APIレスポンス <a href="#usercontentapi-fan-hui" id="usercontentapi-fan-hui"></a>
+#### APIレスポンス規格 <a href="#usercontentapi-fan-hui" id="usercontentapi-fan-hui"></a>
 
 ```
 {
@@ -84,6 +86,8 @@
 
 ### app.moderation.output 拡張点 <a href="#usercontentappmoderationoutput-kuo-zhan-dian" id="usercontentappmoderationoutput-kuo-zhan-dian"></a>
 
+ChatflowやAgent、チャットアシスタントなどのアプリケーションで**コンテンツ審査>出力内容の審査**を有効にすると、Difyは対応するAPI拡張に以下のHTTP POSTリクエストを送信します：
+
 #### リクエストボディ <a href="#user-content-request-body-1" id="user-content-request-body-1"></a>
 
 ```
@@ -107,7 +111,7 @@
     }
     ```
 
-#### APIレスポンス <a href="#usercontentapi-fan-hui-1" id="usercontentapi-fan-hui-1"></a>
+#### APIレスポンス規格 <a href="#usercontentapi-fan-hui-1" id="usercontentapi-fan-hui-1"></a>
 
 ```
 {
@@ -135,3 +139,111 @@
           "text": "I will *** you."
       }
       ```
+
+## コード例
+
+以下は、Cloudflareにデプロイできる`src/index.ts`コードの例です。（Cloudflareの完全な使用方法については、[このドキュメント](https://docs.dify.ai/ja-jp/guides/extension/api-based-extension/cloudflare-workers)を参照してください）
+
+このコードは、キーワードマッチングを実行し、Input（ユーザーの入力内容）および出力（大規模モデルからの返答内容）をフィルタリングします。ユーザーは必要に応じてマッチングロジックを変更できます。
+
+```
+import { Hono } from "hono";
+import { bearerAuth } from "hono/bearer-auth";
+import { z } from "zod";
+import { zValidator } from "@hono/zod-validator";
+import { generateSchema } from '@anatine/zod-openapi';
+
+type Bindings = {
+  TOKEN: string;
+};
+
+const app = new Hono<{ Bindings: Bindings }>();
+
+// API形式の検証 ⬇️
+const schema = z.object({
+  point: z.union([
+    z.literal("ping"),
+    z.literal("app.external_data_tool.query"),
+    z.literal("app.moderation.input"),
+    z.literal("app.moderation.output"),
+  ]), // 'point'の値を特定の値に制限
+  params: z
+    .object({
+      app_id: z.string().optional(),
+      tool_variable: z.string().optional(),
+      inputs: z.record(z.any()).optional(),
+      query: z.any(),
+      text: z.any()
+    })
+    .optional(),
+});
+
+// OpenAPIスキーマを生成
+app.get("/", (c) => {
+  return c.json(generateSchema(schema));
+});
+
+app.post(
+  "/",
+  (c, next) => {
+    const auth = bearerAuth({ token: c.env.TOKEN });
+    return auth(c, next);
+  },
+  zValidator("json", schema),
+  async (c) => {
+    const { point, params } = c.req.valid("json");
+    if (point === "ping") {
+      return c.json({
+        result: "pong",
+      });
+    }
+    // ⬇️ ここにロジックを実装 ⬇️
+    // point === "app.external_data_tool.query"
+    else if (point === "app.moderation.input"){
+    // 入力チェック ⬇️
+    const inputkeywords = ["入力フィルターテスト1", "入力フィルターテスト2", "入力フィルターテスト3"];
+
+    if (inputkeywords.some(keyword => params.query.includes(keyword))) 
+      {
+      return c.json({
+        "flagged": true,
+        "action": "direct_output",
+        "preset_response": "入力に不適切なコンテンツが含まれています。別の質問を試してください！"
+      });
+    } else {
+      return c.json({
+        "flagged": false,
+        "action": "direct_output",
+        "preset_response": "入力に問題はありません"
+      });
+    }
+    // 入力チェック完了 
+    }
+    
+    else {
+      // 出力チェック ⬇️
+      const outputkeywords = ["出力フィルターテスト1", "出力フィルターテスト2", "出力フィルターテスト3"]; 
+
+  if (outputkeywords.some(keyword => params.text.includes(keyword))) 
+    {
+      return c.json({
+        "flagged": true,
+        "action": "direct_output",
+        "preset_response": "出力に機密情報が含まれており、システムによってフィルタリングされました。別の質問をしてください！"
+      });
+    }
+  
+  else {
+    return c.json({
+      "flagged": false,
+      "action": "direct_output",
+      "preset_response": "出力に問題はありません"
+    });
+  };
+    }
+    // 出力チェック完了 
+  }
+);
+
+export default app;
+```

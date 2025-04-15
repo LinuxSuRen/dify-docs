@@ -12,6 +12,8 @@ This module is used to review the content input by end-users and the output cont
 
 ### app.moderation.input Extension Point
 
+When **Content Moderation > Review Input Content** is enabled in applications like Chatflow, Agent, or Chat Assistant, Dify will send the following HTTP POST request to the corresponding API extension:
+
 #### Request Body
 
 ```
@@ -44,7 +46,7 @@ This module is used to review the content input by end-users and the output cont
     }
     ```
 
-#### API Response
+#### API Response Specifications
 
 ```
 {
@@ -84,6 +86,8 @@ This module is used to review the content input by end-users and the output cont
 
 ### app.moderation.output Extension Point
 
+When **Content Moderation > Review Output Content** is enabled in applications like Chatflow, Agent, or Chat Assistant, Dify will send the following HTTP POST request to the corresponding API extension:
+
 #### Request Body
 
 ```
@@ -107,7 +111,7 @@ This module is used to review the content input by end-users and the output cont
     }
     ```
 
-#### API Response
+#### API Response Specifications
 
 ```
 {
@@ -135,3 +139,111 @@ This module is used to review the content input by end-users and the output cont
           "text": "I will *** you."
       }
       ```
+
+## Code Example
+
+Below is an example `src/index.ts` code that can be deployed on Cloudflare. (For the complete usage method of Cloudflare, please refer to [this document](https://docs.dify.ai/guides/extension/api-based-extension/cloudflare-workers))
+
+The code works by performing keyword matching to filter Input (user-entered content) and output (content returned by the large model). Users can modify the matching logic according to their needs.
+
+```
+import { Hono } from "hono";
+import { bearerAuth } from "hono/bearer-auth";
+import { z } from "zod";
+import { zValidator } from "@hono/zod-validator";
+import { generateSchema } from '@anatine/zod-openapi';
+
+type Bindings = {
+  TOKEN: string;
+};
+
+const app = new Hono<{ Bindings: Bindings }>();
+
+// API format validation ⬇️
+const schema = z.object({
+  point: z.union([
+    z.literal("ping"),
+    z.literal("app.external_data_tool.query"),
+    z.literal("app.moderation.input"),
+    z.literal("app.moderation.output"),
+  ]), // Restricts 'point' to specific values
+  params: z
+    .object({
+      app_id: z.string().optional(),
+      tool_variable: z.string().optional(),
+      inputs: z.record(z.any()).optional(),
+      query: z.any(),
+      text: z.any()
+    })
+    .optional(),
+});
+
+// Generate OpenAPI schema
+app.get("/", (c) => {
+  return c.json(generateSchema(schema));
+});
+
+app.post(
+  "/",
+  (c, next) => {
+    const auth = bearerAuth({ token: c.env.TOKEN });
+    return auth(c, next);
+  },
+  zValidator("json", schema),
+  async (c) => {
+    const { point, params } = c.req.valid("json");
+    if (point === "ping") {
+      return c.json({
+        result: "pong",
+      });
+    }
+    // ⬇️ implement your logic here ⬇️
+    // point === "app.external_data_tool.query"
+    else if (point === "app.moderation.input"){
+    // Input check ⬇️
+    const inputkeywords = ["input filter test1", "input filter test2", "input filter test3"];
+
+    if (inputkeywords.some(keyword => params.query.includes(keyword))) 
+      {
+      return c.json({
+        "flagged": true,
+        "action": "direct_output",
+        "preset_response": "Input contains prohibited content, please try a different question!"
+      });
+    } else {
+      return c.json({
+        "flagged": false,
+        "action": "direct_output",
+        "preset_response": "Input is normal"
+      });
+    }
+    // Input check completed 
+    }
+    
+    else {
+      // Output check ⬇️
+      const outputkeywords = ["output filter test1", "output filter test2", "output filter test3"]; 
+
+  if (outputkeywords.some(keyword => params.text.includes(keyword))) 
+    {
+      return c.json({
+        "flagged": true,
+        "action": "direct_output",
+        "preset_response": "Output contains sensitive content and has been filtered by the system. Please ask a different question!"
+      });
+    }
+  
+  else {
+    return c.json({
+      "flagged": false,
+      "action": "direct_output",
+      "preset_response": "Output is normal"
+    });
+  };
+    }
+    // Output check completed 
+  }
+);
+
+export default app;
+```

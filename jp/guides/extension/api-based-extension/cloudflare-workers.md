@@ -1,19 +1,19 @@
 # Cloudflare ワーカーを使用して API ツールをデプロイ
 
-## 入門
+## 始めに
 
 Dify API Extension は、アクセス可能な公開アドレスを API エンドポイントとして使用する必要があるため、API 拡張を公開アドレスにデプロイする必要があります。ここでは、Cloudflare ワーカーを使用して API 拡張をデプロイします。
 
-まず、[Example GitHub レポジトリ](https://github.com/crazywoola/dify-extension-workers) をクローンします。このレポジトリには、簡単な API 拡張が含まれており、これを基にして修正を行うことができます。
+まず、[サンプル GitHub リポジトリ](https://github.com/crazywoola/dify-extension-workers) をクローンします。このリポジトリには、簡単な API 拡張が含まれており、これを基にして修正を行うことができます。
 
 ```bash
 git clone https://github.com/crazywoola/dify-extension-workers.git
 cp wrangler.toml.example wrangler.toml
 ```
 
-次に、`wrangler.toml` ファイルを開き、`名前` と `互換性の日付` をあなたのアプリ名と互換日付に変更します。
+次に、`wrangler.toml` ファイルを開き、`name` と `compatibility_date` をあなたのアプリ名と互換日付に変更します。
 
-ここで注意が必要な設定は、`vars` 内の `トークン` です。Dify に API 拡張を追加する際に、このトークンを入力する必要があります。セキュリティ上の観点から、ランダムな文字列をトークンとして使用することをお勧めします。トークンをソースコードに直接書き込むのではなく、環境変数を使用してトークンを渡す方法を取るべきです。したがって、wrangler.toml をコードレポジトリにコミットしないでください。
+ここで注意が必要な設定は、`vars` 内の `TOKEN` です。Dify に API 拡張を追加する際に、このトークンを入力する必要があります。セキュリティ上の観点から、ランダムな文字列をトークンとして使用することをお勧めします。トークンをソースコードに直接書き込むのではなく、環境変数を使用してトークンを渡す方法を取るべきです。したがって、wrangler.toml をコードリポジトリにコミットしないでください。
 
 ```toml
 name = "dify-extension-example"
@@ -26,30 +26,57 @@ TOKEN = "bananaiscool"
 この API 拡張は、ランダムなブレイキング・バッドの名言を返します。`src/index.ts` 内でこの API 拡張のロジックを変更することができます。この例は、サードパーティの API とやり取りする方法を示しています。
 
 ```typescript
-// ⬇️ Implement your logic here ⬇️
+// ⬇️ ここにロジックを実装 ⬇️
 // point === "app.external_data_tool.query"
 // https://api.breakingbadquotes.xyz/v1/quotes
 const count = params?.inputs?.count ?? 1;
 const url = `https://api.breakingbadquotes.xyz/v1/quotes/${count}`;
 const result = await fetch(url).then(res => res.text())
-// ⬆️ implement your logic here ⬆️
+// ⬆️ ここにロジックを実装 ⬆️
 ```
 
-このレポジトリは、ビジネスロジック以外のすべての設定を簡素化しています。`npm` コマンドを使用して API 拡張をデプロイすることができます。
+このリポジトリは、ビジネスロジック以外のすべての設定を簡素化しています。`npm` コマンドを使用して API 拡張をデプロイすることができます。
 
 ```bash
+npm install
 npm run deploy
 ```
 
-デプロイが成功すると、公開アドレスが得られます。このアドレスを Dify に API エンドポイントとして追加できます。`endpoint` パスを忘れないようにしてください。
+デプロイが成功すると、公開アドレスが得られます。このアドレスを Dify に API エンドポイントとして追加できます。`endpoint` パスを忘れないようにしてください。この経路の具体的な定義は `src/index.ts` で確認できます。
 
 <figure><img src="../../../.gitbook/assets/api_extension_edit.png" alt=""><figcaption><p>Dify に API エンドポイントを追加する</p></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/app_tools_edit.png" alt=""><figcaption><p>アプリ編集ページに API ツールを追加する</p></figcaption></figure>
 
+また、`npm run dev` コマンドを使用してローカルにデプロイし、テストすることもできます。
+
+```bash
+npm install
+npm run dev
+```
+
+関連する出力：
+
+```bash
+$ npm run dev
+> dev
+> wrangler dev src/index.ts
+
+ ⛅️ wrangler 3.99.0
+-------------------
+
+Your worker has access to the following bindings:
+- Vars:
+  - TOKEN: "ban****ool"
+⎔ Starting local server...
+[wrangler:inf] Ready on http://localhost:58445
+```
+
+その後、Postman などのツールを使用してローカルインターフェースをデバッグできます。
+
 ## その他のロジック TL;DR
 
-### ベアラー認証について
+### Bearer 認証について
 
 ```typescript
 import { bearerAuth } from "hono/bearer-auth";
@@ -60,7 +87,7 @@ import { bearerAuth } from "hono/bearer-auth";
 },
 ```
 
-上記のコードでは、ベアラー認証ロジックを示しています。`hono/bearer-auth` パッケージを使用してベアラー認証を実装しています。`src/index.ts` で `c.env.TOKEN` を使用してトークンを取得できます。
+上記のコードでは、Bearer 認証ロジックを示しています。`hono/bearer-auth` パッケージを使用して Bearer 認証を実装しています。`src/index.ts` で `c.env.TOKEN` を使用してトークンを取得できます。
 
 ### パラメータの検証について
 
@@ -97,4 +124,4 @@ wrangler tail
 
 * [Cloudflare Workers](https://workers.cloudflare.com/)
 * [Cloudflare Workers CLI](https://developers.cloudflare.com/workers/cli-wrangler/install-update)
-* [Example GitHub Repository](https://github.com/crazywoola/dify-extension-workers)
+* [サンプル GitHub リポジトリ](https://github.com/crazywoola/dify-extension-workers)
