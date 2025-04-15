@@ -5,7 +5,9 @@ Dify’s structured outputs ensures LLMs return data in predictable JSON formats
 ## Benefits
 
 - **Consistent Data Formatting**: All LLM-generated content follows predefined formats, eliminating data inconsistencies.
+
 - **Seamless Integration**: : Databases, APIs, or frontend applications can directly parse JSON Schema without additional data cleaning.
+
 - **Simplified Development**: Developers can skip writing complex validation code by letting JSON Schema handle output constraints.
 
 ## Implementation Methods
@@ -14,11 +16,11 @@ Dify offers two ways to create structured outputs:
 
 ### Method 1: Tool Parameters
 
-Define your output structure directly in tool parameters. See **[Tool](https://docs.dify.ai/plugins/schema-definition/tool) > Data Structures > Return Variable Definitions**。
+Define your output structure directly in tool parameters. See **[Tool](https://docs.dify.ai/plugins/schema-definition/tool) > Data Structures > Return Variable Definitions**.
 
 ### Method 2: JSON Schema Editor
 
-Use the built-in editor in LLM nodes. See **[LLM](https://docs.dify.ai/guides/workflow/node/llm) > Advanced Features > Structured Outputs**。
+Use the built-in editor in LLM nodes. See **[LLM](https://docs.dify.ai/guides/workflow/node/llm) > Advanced Features > Structured Outputs**.
 
 ## Error Handling
 
@@ -27,7 +29,9 @@ Use the built-in editor in LLM nodes. See **[LLM](https://docs.dify.ai/guides/wo
 When you are working with the JSON Schema Editor, you might run into a few common challenges:
 
 - **Limited Model Performance**: Smaller LLMs (like GPT-3.5 Turbo) sometimes have trouble following JSON Schema instructions correctly.
+
 - **Format Issues**: Some LLMs only understand basic JSON, not full JSON Schema.
+
 - **Error Messages**: You might see `Failed to parse structured output: output is not a valid json str` when the model fails to generate proper JSON.
 
 **How to Fix These Issues**
@@ -42,7 +46,9 @@ When you are working with the JSON Schema Editor, you might run into a few commo
 2.  **Write Clear Instructions**. Make sure your prompts match what you are trying to do. For example, if you need mathematical formulas, don’t ask for legal analysis—this helps the AI understand exactly what you need.
 
 3.  **Have a Backup Plan**.
-    1. Enable **Retry on Failure** with custom retry attempts and intervals
+
+    1. Enable **Retry on Failure** with custom retry attempts and intervals.
+
     2. Set up **Failure Branch** to handle any errors.
 
 See [Error Handling](https://docs.dify.ai/guides/workflow/error-handling) for more details.

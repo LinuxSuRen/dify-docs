@@ -157,6 +157,8 @@ LLM 节点中的 **JSON Schema 编辑器** 让你能够定义 LLM 返回的数�
 
 -   **你希望快速迭代字段结构**，而不是每次修改都需要更新 JSON 代码。
 
+![Visual Editor](https://assets-docs.dify.ai/2025/04/a9d6a34a7903f81e4d57c7f1d8d0712b.png)
+
 **添加字段**
 
 在 **结构化输出** 框中点击 **添加子字段** 按钮，并配置字段参数：
@@ -165,7 +167,7 @@ LLM 节点中的 **JSON Schema 编辑器** 让你能够定义 LLM 返回的数�
 
 -   *（必填）* **字段类型**：支持 string、number、object、array 等字段类型等。
 
-    > 对象（object）或数组（array）字段可添加子字段。
+  > 对象（object）或数组（array）字段可添加子字段。
 
 -   **描述**：帮助 LLM 理解字段含义，提高输出准确性。
 
@@ -188,7 +190,7 @@ LLM 节点中的 **JSON Schema 编辑器** 让你能够定义 LLM 返回的数�
 
 -   删除字段：鼠标悬停至字段卡片，点击 **删除** 图标，字段将从列表中删除。
 
-> 删除对象（object）或数组（array）字段时，其所有子字段也会被删除。
+  > 删除对象（object）或数组（array）字段时，其所有子字段也会被删除。
 
 **导入现有 JSON 示例**
 
@@ -203,13 +205,13 @@ LLM 节点中的 **JSON Schema 编辑器** 让你能够定义 LLM 返回的数�
 
 2.  点击 **提交** 按钮，系统会自动解析 JSON 示例，并转换为 JSON Schema 如下：
 
-![]()
+![JSON Schema Editor](https://assets-docs.dify.ai/2025/04/646805384efa3cd85869d23a4d9735ad.png)
 
 **使用 AI 生成 JSON Schema**
 
 1.  点击 **AI 生成** 图标，选择模型（如 GPT-4o）。在输入框中描述你的 JSON Schema，例如：
 
-> “我需要一个包含用户名（string）、年龄（number）和兴趣爱好（array）的 JSON Schema。”
+  > “我需要一个包含用户名（string）、年龄（number）和兴趣爱好（array）的 JSON Schema。”
 
 2.  点击 **生成** ，系统将自动生成 JSON Schema 如下：
 
@@ -249,6 +251,8 @@ LLM 节点中的 **JSON Schema 编辑器** 让你能够定义 LLM 返回的数�
 -   **你希望使用高级 Schema 特性**，如 `pattern`（正则表达式匹配）或 `oneOf`（多种类型支持）。
 
 -   你使用 LLM 生成了初步 Schema，但**希望修改某些字段的类型或结构**，使其更符合业务需求。
+
+![JSON Schema](https://assets-docs.dify.ai/2025/04/669af808dd9d0d8521a36e14db731cec.png)
 
 **添加字段**
 
@@ -305,7 +309,7 @@ LLM 节点中的 **JSON Schema 编辑器** 让你能够定义 LLM 返回的数�
 
 1.  点击 **AI 生成** 图标，选择模型（如 GPT-4o）。在输入框中描述你的 JSON Schema，例如：
 
-> “我需要一个包含用户名（string）、年龄（number）和兴趣爱好（array）的 JSON Schema。”
+  > “我需要一个包含用户名（string）、年龄（number）和兴趣爱好（array）的 JSON Schema。”
 
 2.  点击 **生成** ，系统将自动生成 JSON Schema 如下：
 

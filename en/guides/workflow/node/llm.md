@@ -147,7 +147,7 @@ The **JSON Schema Editor** in LLM nodes lets you define how you want your data s
 
 Access the editor through **LLM Node > Output Variables > Structured > Configure**. You can switch between visual and JSON Schema editing modes.
 
-![]()
+![JSON Schema Editor](https://assets-docs.dify.ai/2025/04/646805384efa3cd85869d23a4d9735ad.png)
 
 <Tabs>
     <Tab title="Visual Editor">
@@ -160,6 +160,8 @@ Access the editor through **LLM Node > Output Variables > Structured > Configure
 
 - When you need to quickly iterate on your schema structure
 
+![Visual Editor](https://assets-docs.dify.ai/2025/04/a9d6a34a7903f81e4d57c7f1d8d0712b.png)
+
 **Add Fields**
 
 Click **Add Field** and set parameters below:
@@ -168,7 +170,7 @@ Click **Add Field** and set parameters below:
 
 - *(required)* Field Type: Choose from string, number, object, array, etc.
 
-> Note: Object and array type fields can contain child fields.
+  > Note: Object and array type fields can contain child fields.
 
 - Description: Helps the LLM understand what the field means.
 
@@ -189,7 +191,7 @@ Click **Add Field** and set parameters below:
 
 - To Delete: Hover over a field and click the Delete icon.
 
-> Note: Deleting an object or array removes all its child fields.
+  > Note: Deleting an object or array removes all its child fields.
 
 **Import from JSON**
 
@@ -208,7 +210,7 @@ Click **Add Field** and set parameters below:
 
 1. Click the AI Generate icon, select a model (like GPT-4o), and describe what you need:
 
-> “I need a JSON Schema for user profiles with username (string), age (number), and interests (array).”
+  > “I need a JSON Schema for user profiles with username (string), age (number), and interests (array).”
 
 2. Click **Generate** to create a schema:
 
@@ -246,6 +248,8 @@ Click **Add Field** and set parameters below:
 
 - When you want to fine-tune an AI-generated schema to fit your exact requirements
 
+![JSON Schema](https://assets-docs.dify.ai/2025/04/669af808dd9d0d8521a36e14db731cec.png)
+
 **Add Fields**
 
 1. Click **Import from JSON** and add your field structure:
@@ -280,7 +284,7 @@ Click **Add Field** and set parameters below:
 
 1. Click the AI Generate icon, select a model (like GPT-4o), and describe what you need:
 
-> “I need a JSON Schema for user profiles with username (string), age (number), and interests (array).”
+  > “I need a JSON Schema for user profiles with username (string), age (number), and interests (array).”
 
 2. Click **Generate** to create a schema:
 
@@ -380,7 +384,7 @@ For more information about exception handling methods, please refer to the [Erro
 
 2. Test it with a review in your Start node:
 
-> “This product is excellent!”
+  > “This product is excellent!”
 
 3. The LLM node will return a clean, structured response:
 
