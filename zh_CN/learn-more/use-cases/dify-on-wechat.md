@@ -1,38 +1,38 @@
 # 手把手教你把 Dify 接入微信生态
 
-> 作者：韩方圆，"Dify on WeChat"开源项目作者
+> 作者：韩方圆，"Dify on WeChat" 开源项目作者
 
 ## 1. 概述
 
 微信作为最热门的即时通信软件，拥有巨大的流量。
 
-微信友好的聊天窗口是天然的AI应用LUI(Language User Interface)/CUI(Command User Interface)。
+微信友好的聊天窗口是天然的 AI 应用 LUI (Language User Interface)/CUI (Command User Interface)。
 
 微信不仅有个人微信，同时提供了公众号、企业微信、企业微信应用、企业微信客服等对话渠道，拥有良好的微信生态。
 
-把Dify应用接入微信生态，就能打造一个功能强大的智能客服，大大降低客服成本，同时也能够提升客户体验。本篇教程就是手把手地教你如何利用[Dify on WeChat](https://github.com/hanfangyuan4396/dify-on-wechat)项目，把Dify应用接入微信生态。
+把 Dify 应用接入微信生态，就能打造一个功能强大的智能客服，大大降低客服成本，同时也能够提升客户体验。本篇教程就是手把手地教你如何利用 [Dify on WeChat](https://github.com/hanfangyuan4396/dify-on-wechat) 项目，把 Dify 应用接入微信生态。
 
-## 2. Dify接入个人微信
+## 2. Dify 接入个人微信
 
 ### 2.1. 准备工作
 
 #### 2.1.1. 创建聊天助手
 
-**（1）Dify简介**
+**（1）Dify 简介 **
 
-Dify是一个优秀的LLMOps（大型语言模型运维）平台，Dify的详细介绍请移步官方文档[欢迎使用 Dify | 中文 | Dify](https://docs.dify.ai/v/zh-hans)。
+Dify 是一个优秀的 LLMOps（大型语言模型运维）平台，Dify 的详细介绍请移步官方文档 [欢迎使用 Dify | 中文 | Dify](https://docs.dify.ai/v/zh-hans)。
 
-**（2）登录Dify官方应用平台**
+**（2）登录 Dify 官方应用平台 **
 
-首先，登录[Dify官方应用平台](https://cloud.dify.ai/signin)，你可以选择使用Github登录或者使用Google登录。此外，你也可以参考Dify官方教程[Docker Compose 部署 | 中文 | Dify](https://docs.dify.ai/v/zh-hans/getting-started/install-self-hosted/docker-compose) 私有部署，Dify是开源项目，支持私有部署。
+首先，登录 [Dify 官方应用平台](https://cloud.dify.ai/signin)，你可以选择使用 Github 登录或者使用 Google 登录。此外，你也可以参考 Dify 官方教程 [Docker Compose 部署 | 中文 | Dify](https://docs.dify.ai/v/zh-hans/getting-started/install-self-hosted/docker-compose) 私有部署，Dify 是开源项目，支持私有部署。
 
 <figure><img src="../../.gitbook/assets/login.jpg" alt=""><figcaption></figcaption></figure>
 
-**（3）创建Dify基础编排聊天助手应用**
+**（3）创建 Dify 基础编排聊天助手应用 **
 
 <figure><img src="../../.gitbook/assets/create-basic-chatbot.jpg" alt=""><figcaption></figcaption></figure>
 
-登录成功后，进入Dify页面，我们按照下方步骤创建一个基础编排聊天助手应用
+登录成功后，进入 Dify 页面，我们按照下方步骤创建一个基础编排聊天助手应用
 
 1. 点击页面上方的工作室
 2. 创建空白应用
@@ -45,7 +45,7 @@ Dify是一个优秀的LLMOps（大型语言模型运维）平台，Dify的详细
 
 创建成功后我们会跳转到上图所示页面，我们继续配置应用
 
-1. 选择模型，如gpt-3.5-turbo-0125
+1. 选择模型，如 gpt-3.5-turbo-0125
 2. 设置模型参数
 3. 填写应用提示词
 
@@ -55,29 +55,29 @@ Dify是一个优秀的LLMOps（大型语言模型运维）平台，Dify的详细
 
 1. 发布
 2. 更新
-3. 访问API
+3. 访问 API
 
-**（4）生成基础编排聊天助手API密钥**
+**（4）生成基础编排聊天助手 API 密钥 **
 
 <figure><img src="../../.gitbook/assets/create-basic-chatbot-apikey.jpg" alt=""><figcaption></figcaption></figure>
 
-在点击"访问API"后，我们会跳转到上图的API管理页面，在这个页面我们按照如下步骤获取API密钥：
+在点击 "访问 API" 后，我们会跳转到上图的 API 管理页面，在这个页面我们按照如下步骤获取 API 密钥：
 
-1. 点击右上角API密钥
+1. 点击右上角 API 密钥
 2. 点击创建密钥
 3. 复制保存密钥
 
-在保存密钥后，还需要查看右上角的API服务器，如果是Dify官网的应用，API服务器地址为 "https://api.dify.ai/v1", 如果是私有部署的，请确认你自己的API服务器地址。
+在保存密钥后，还需要查看右上角的 API 服务器，如果是 Dify 官网的应用，API 服务器地址为 "https://api.dify.ai/v1", 如果是私有部署的，请确认你自己的 API 服务器地址。
 
-至此，创建聊天助手的准备工作结束，在此小节中我们只需要保存好两个东西：**API密钥**与**API服务器地址**
+至此，创建聊天助手的准备工作结束，在此小节中我们只需要保存好两个东西：**API 密钥 ** 与 **API 服务器地址 **
 
-#### 2.1.2. 下载Dify on WeChat项目
+#### 2.1.2. 下载 Dify on WeChat 项目
 
-**（1）Dify on WeChat项目简介**
+**（1）Dify on WeChat 项目简介 **
 
-[Dify on WeChat](https://github.com/hanfangyuan4396/dify-on-wechat)是[ ChatGPT on WeChat](https://github.com/zhayujie/chatgpt-on-wechat)的下游分支，额外实现了对接[Dify](https://github.com/langgenius/dify) API，支持Dify聊天助手、支持Agent调用工具和知识库，支持Dify工作流，详情请查看GitHub仓库[Dify on WeChat](https://github.com/hanfangyuan4396/dify-on-wechat)。
+[Dify on WeChat](https://github.com/hanfangyuan4396/dify-on-wechat) 是 [ ChatGPT on WeChat](https://github.com/zhayujie/chatgpt-on-wechat) 的下游分支，额外实现了对接 [Dify](https://github.com/langgenius/dify) API，支持 Dify 聊天助手、支持 Agent 调用工具和知识库，支持 Dify 工作流，详情请查看 GitHub 仓库 [Dify on WeChat](https://github.com/hanfangyuan4396/dify-on-wechat)。
 
-**（2）下载代码并安装依赖**
+**（2）下载代码并安装依赖 **
 
 1. 下载项目代码
 
@@ -86,9 +86,9 @@ git clone https://github.com/hanfangyuan4396/dify-on-wechat
 cd dify-on-wechat/
 ```
 
-2. 安装python
+2. 安装 python
 
-Dify on WeChat项目使用python语言编写，请在[python官网](https://www.python.org/downloads/)下载安装python，推荐安装python3.8以上版本，我在ubuntu测试过3.11.6版本，可以正常运行。
+Dify on WeChat 项目使用 python 语言编写，请在 [python 官网](https://www.python.org/downloads/) 下载安装 python，推荐安装 python3.8 以上版本，我在 ubuntu 测试过 3.11.6 版本，可以正常运行。
 
 3. 安装核心依赖（必选）：
 
@@ -102,11 +102,11 @@ pip3 install -r requirements.txt  # 国内可以在该命令末尾添加 "-i htt
 pip3 install -r requirements-optional.txt # 国内可以在该命令末尾添加 "-i https://mirrors.aliyun.com/pypi/simple" 参数，使用阿里云镜像源安装依赖
 ```
 
-**（3）填写配置文件**
+**（3）填写配置文件 **
 
-我们在项目根目录创建名为config.json的文件，文件内容如下，我们在**2.1.1小节（4）** 最后保存了**API密钥**与**API服务器地址**，请把**dify\_api\_base**配置为**API服务器地址**；**dify\_api\_key**配置为**API密钥**其他配置保持不变。
+我们在项目根目录创建名为 config.json 的文件，文件内容如下，我们在 **2.1.1 小节（4）** 最后保存了 **API 密钥 ** 与 **API 服务器地址 **，请把 **dify\_api\_base** 配置为 **API 服务器地址 **；**dify\_api\_key** 配置为 **API 密钥 ** 其他配置保持不变。
 
-(PS: 很多朋友可能并不是严格按照我教程给出的步骤创建**聊天助手类型**的Dify应用，在此特别说明一下**dify\_app\_type**配置方法，如果你创建了**聊天助手**应用请配置为**chatbot**；创建了**Agent**应用请配置为**agent** 创建了**工作流**应用请配置为**workflow**。)
+(PS: 很多朋友可能并不是严格按照我教程给出的步骤创建 ** 聊天助手类型 ** 的 Dify 应用，在此特别说明一下 **dify\_app\_type** 配置方法，如果你创建了 ** 聊天助手 ** 应用请配置为 **chatbot**；创建了 **Agent** 应用请配置为 **agent** 创建了 ** 工作流 ** 应用请配置为 **workflow**。)
 
 ```bash
 {
@@ -126,28 +126,28 @@ pip3 install -r requirements-optional.txt # 国内可以在该命令末尾添加
 
 #### 2.2.1. 快速启动测试
 
-**（1）在Dify on Wechat项目根目录执行如下命令**
+**（1）在 Dify on Wechat 项目根目录执行如下命令 **
 
 ```bash
 cd dify-on-wechat
-python3 app.py   # windows环境下该命令通常为 python app.py
+python3 app.py   # windows 环境下该命令通常为 python app.py
 ```
 
-**（2）扫码登录**
+**（2）扫码登录 **
 
 <figure><img src="../../.gitbook/assets/wechat-login.jpg" alt=""><figcaption></figcaption></figure>
 
-本项目使用itchat实现个人微信登录，有封号风险，建议使用**实名认证**过的**微信小号**进行测试，在执行上述命令后，我们可以在控制台看到打印如上图所示二维码，使用微信扫码登录，登录后当看到"itchat:Start auto replying."字符，表示登录成功，我们可以进行测试。
+本项目使用 itchat 实现个人微信登录，有封号风险，建议使用 ** 实名认证 ** 过的 ** 微信小号 ** 进行测试，在执行上述命令后，我们可以在控制台看到打印如上图所示二维码，使用微信扫码登录，登录后当看到 "itchat:Start auto replying." 字符，表示登录成功，我们可以进行测试。
 
-**（3）对话测试**
+**（3）对话测试 **
 
 <figure><img src="../../.gitbook/assets/basic-chatbot-on-wechat.jpg" alt=""><figcaption></figcaption></figure>
 
-我们看到，微信机器人的回复与在Dify测试页面上的回复一致。至此，恭喜你成功把Dify接入了个人微信🎉🎉🎉
+我们看到，微信机器人的回复与在 Dify 测试页面上的回复一致。至此，恭喜你成功把 Dify 接入了个人微信🎉🎉🎉
 
-(PS: 有些朋友到这里可能在日志中看到正常回复了消息，但是微信中没有收到消息，请**不要用自己的微信给自己发消息**)
+(PS: 有些朋友到这里可能在日志中看到正常回复了消息，但是微信中没有收到消息，请 ** 不要用自己的微信给自己发消息 **)
 
-**（4）服务器部署**
+**（4）服务器部署 **
 
 1. 源码部署
 
@@ -156,11 +156,11 @@ cd dify-on-wechat
 nohup python3 app.py & tail -f nohup.out   # 在后台运行程序并通过日志输出二维码
 ```
 
-2. docker compose部署
+2. docker compose 部署
 
-容器的**环境变量**会**覆盖**config.json文件的配置，请修改docker/docker-compose.yml文件环境变量为你实际的配置，配置方法与**2.1.1小节(4)** 的config.json配置一致。
+容器的 ** 环境变量 ** 会 ** 覆盖 **config.json 文件的配置，请修改 docker/docker-compose.yml 文件环境变量为你实际的配置，配置方法与 **2.1.1 小节 (4)** 的 config.json 配置一致。
 
-请确保正确配置**DIFY\_API\_BASE**, **DIFY\_API\_KEY**与**DIFY\_APP\_TYPE**环境变量。
+请确保正确配置 **DIFY\_API\_BASE**, **DIFY\_API\_KEY** 与 **DIFY\_APP\_TYPE** 环境变量。
 
 ```yaml
 version: '2.0'
@@ -184,24 +184,24 @@ services:
 然后执行如下命令启动容器
 
 ```bash
-cd dify-on-wechat/docker       # 进入docker目录
-docker compose up -d           # 启动docker容器
+cd dify-on-wechat/docker       # 进入 docker 目录
+docker compose up -d           # 启动 docker 容器
 docker logs -f dify-on-wechat  # 查看二维码并登录
 ```
 
 ### 2.3. 把工作流编排聊天助手接入微信
 
-在把Dify基础的聊天助手应用接入微信后，我们接下来增加难度，尝试把工作流编排聊天助手应用接入微信，实现一个具有Dify平台知识的微信智能客服，为我们解答Dify工作流相关知识。
+在把 Dify 基础的聊天助手应用接入微信后，我们接下来增加难度，尝试把工作流编排聊天助手应用接入微信，实现一个具有 Dify 平台知识的微信智能客服，为我们解答 Dify 工作流相关知识。
 
 #### 2.3.1. 创建知识库
 
-**（1）下载知识库文件**
+**（1）下载知识库文件 **
 
 <figure><img src="../../.gitbook/assets/download-dify-workflow-knowledge.jpg" alt=""><figcaption></figcaption></figure>
 
-我们到[dify文档仓库](../../guides/workflow/)下载Dify工作流介绍的文档。
+我们到 [dify 文档仓库](../../guides/workflow/) 下载 Dify 工作流介绍的文档。
 
-**（2）Dify中导入知识库**
+**（2）Dify 中导入知识库 **
 
 <figure><img src="../../.gitbook/assets/create-knowledge-1.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -209,7 +209,7 @@ docker logs -f dify-on-wechat  # 查看二维码并登录
 
 <figure><img src="../../.gitbook/assets/create-knowledge-2.jpg" alt=""><figcaption></figcaption></figure>
 
-选择导入已有文本，上传刚才下载的introduce.md文件，点击下一步
+选择导入已有文本，上传刚才下载的 introduce.md 文件，点击下一步
 
 <figure><img src="../../.gitbook/assets/create-knowledge-3.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -231,35 +231,35 @@ docker logs -f dify-on-wechat  # 查看二维码并登录
 
 <figure><img src="../../.gitbook/assets/create-workflow-chatbot-1.jpg" alt=""><figcaption></figcaption></figure>
 
-我们进入Dify工作室，点击从应用模板创建
+我们进入 Dify 工作室，点击从应用模板创建
 
 <figure><img src="../../.gitbook/assets/create-workflow-chatbot-2.jpg" alt=""><figcaption></figcaption></figure>
 
-我们使用知识库+聊天机器人类型的模板，设置应用图标与名称，点击创建
+我们使用知识库 + 聊天机器人类型的模板，设置应用图标与名称，点击创建
 
 <figure><img src="../../.gitbook/assets/create-workflow-chatbot-3.jpg" alt=""><figcaption></figcaption></figure>
 
-跳转到工作流编排页面后，先点击知识检索节点，点击最右侧"+"添加知识库。我们选择之前上传好的introduce.md知识库，该知识库是对Dify工作流的基本介绍。最后我们点击添加，知识库节点设置完成。
+跳转到工作流编排页面后，先点击知识检索节点，点击最右侧 "+" 添加知识库。我们选择之前上传好的 introduce.md 知识库，该知识库是对 Dify 工作流的基本介绍。最后我们点击添加，知识库节点设置完成。
 
 <figure><img src="../../.gitbook/assets/create-workflow-chatbot-4.jpg" alt=""><figcaption></figcaption></figure>
 
-接下来选择LLM节点，点击设置上下文，我们选择result变量，该变量存有知识检索的结果。
+接下来选择 LLM 节点，点击设置上下文，我们选择 result 变量，该变量存有知识检索的结果。
 
 <figure><img src="../../.gitbook/assets/create-workflow-chatbot-5.jpg" alt=""><figcaption></figcaption></figure>
 
-设置完LLM节点后，我们点击预览进行测试，输入问题：请介绍一下dify工作流。可以看到最终输出了Dify工作流的正确介绍。测试正常后，我们返回编辑模式。
+设置完 LLM 节点后，我们点击预览进行测试，输入问题：请介绍一下 dify 工作流。可以看到最终输出了 Dify 工作流的正确介绍。测试正常后，我们返回编辑模式。
 
 <figure><img src="../../.gitbook/assets/create-workflow-chatbot-6.jpg" alt=""><figcaption></figcaption></figure>
 
-返回编辑模式后，依次点击发布、更新、访问API
+返回编辑模式后，依次点击发布、更新、访问 API
 
-#### 2.3.3. 生成工作流编排聊天助手API密钥
+#### 2.3.3. 生成工作流编排聊天助手 API 密钥
 
-在跳转到API管理页面后，我们参照**2.1.1小节(4)获取"知识库+聊天机器人"应用的API密钥**与**API服务器地址**
+在跳转到 API 管理页面后，我们参照 **2.1.1 小节 (4) 获取 "知识库 + 聊天机器人" 应用的 API 密钥 ** 与 **API 服务器地址 **
 
 #### 2.3.4. 接入微信
 
-与**2.1.2小节（3）类似，我们在项目根目录创建名为config.json的文件，文件内容如下，同样把dify\_api\_base**配置为**知识库+聊天机器人**应用的API服务器地址, **dify\_api\_key**配置为**知识库+聊天机器人**应用的API密钥，其他配置保持不变
+与 **2.1.2 小节（3）类似，我们在项目根目录创建名为 config.json 的文件，文件内容如下，同样把 dify\_api\_base** 配置为 ** 知识库 + 聊天机器人 ** 应用的 API 服务器地址，**dify\_api\_key** 配置为 ** 知识库 + 聊天机器人 ** 应用的 API 密钥，其他配置保持不变
 
 ```bash
 { 
@@ -275,43 +275,43 @@ docker logs -f dify-on-wechat  # 查看二维码并登录
 }
 ```
 
-我们按照**2.2.1小节**启动程序并扫码登录，然后给微信机器人发送消息，进行测试
+我们按照 **2.2.1 小节 ** 启动程序并扫码登录，然后给微信机器人发送消息，进行测试
 
 <figure><img src="../../.gitbook/assets/workflow-chatbot-on-wechat.jpg" alt=""><figcaption></figcaption></figure>
 
-微信机器人的回复与在Dify测试页面上的回复一致。恭喜你更进一步，把工作流编排应用接入了个人微信，你可以向知识库中导入更多的Dify官方文档，让微信机器人为你解答更多的Dify相关问题。
+微信机器人的回复与在 Dify 测试页面上的回复一致。恭喜你更进一步，把工作流编排应用接入了个人微信，你可以向知识库中导入更多的 Dify 官方文档，让微信机器人为你解答更多的 Dify 相关问题。
 
-### 2.4. 把Agent接入微信
+### 2.4. 把 Agent 接入微信
 
-#### 2.4.1. 创建Agent应用
+#### 2.4.1. 创建 Agent 应用
 
 <figure><img src="../../.gitbook/assets/create-agent.jpg" alt=""><figcaption></figcaption></figure>
 
-进入工作室页面，点击创建空白应用，选择Agent，设置图标和应用名称，最后点击创建
+进入工作室页面，点击创建空白应用，选择 Agent，设置图标和应用名称，最后点击创建
 
 <figure><img src="../../.gitbook/assets/config-agent-auth-dalle.jpg" alt=""><figcaption></figcaption></figure>
 
-创建成功后，我们会进入Agent应用配置页面，在这个页面我们选择好对话模型，然后添加工具。我们首先添加DALL-E绘画工具，首次使用该工具需要授权，一般我们设置好OpenAI API key和OpenAI base URL即可使用该DALL-E绘画工具。
+创建成功后，我们会进入 Agent 应用配置页面，在这个页面我们选择好对话模型，然后添加工具。我们首先添加 DALL-E 绘画工具，首次使用该工具需要授权，一般我们设置好 OpenAI API key 和 OpenAI base URL 即可使用该 DALL-E 绘画工具。
 
 <figure><img src="../../.gitbook/assets/config-agent-add-dalle.jpg" alt=""><figcaption></figcaption></figure>
 
-授权成功后，我们添加DALL-E 3绘画工具
+授权成功后，我们添加 DALL-E 3 绘画工具
 
 <figure><img src="../../.gitbook/assets/config-agent-add-duck-calc.jpg" alt=""><figcaption></figcaption></figure>
 
-接着，继续添加DuckDuckGo搜索引擎和数学工具，进行后续的工具测试
+接着，继续添加 DuckDuckGo 搜索引擎和数学工具，进行后续的工具测试
 
 <figure><img src="../../.gitbook/assets/publish-agent.jpg" alt=""><figcaption></figcaption></figure>
 
-我们输入问题"搜索开源项目Dify的star数量，这个数量乘以3.14是多少"，确认应用能够正常调用工具，我们依次点击发布、更新、访问API
+我们输入问题 "搜索开源项目 Dify 的 star 数量，这个数量乘以 3.14 是多少"，确认应用能够正常调用工具，我们依次点击发布、更新、访问 API
 
-#### 2.4.2. 生成Agent API密钥
+#### 2.4.2. 生成 Agent API 密钥
 
-我们继续参照**2.1.1小节（4）获取智能助手**应用的**API密钥**与**API服务器地址**
+我们继续参照 **2.1.1 小节（4）获取智能助手 ** 应用的 **API 密钥 ** 与 **API 服务器地址 **
 
 #### 2.4.3. 接入微信
 
-我们在项目根目录创建名为config.json的文件，文件内容如下，同样把**dify\_api\_base**配置为**智能助手**应用的API服务器地址；**dify\_api\_key**配置为**智能助手**应用的API密钥，注意该应用为**智能助手**类型应用，还需要把**dify\_app\_type**设置为**agent**，其他配置保持不变
+我们在项目根目录创建名为 config.json 的文件，文件内容如下，同样把 **dify\_api\_base** 配置为 ** 智能助手 ** 应用的 API 服务器地址；**dify\_api\_key** 配置为 ** 智能助手 ** 应用的 API 密钥，注意该应用为 ** 智能助手 ** 类型应用，还需要把 **dify\_app\_type** 设置为 **agent**，其他配置保持不变
 
 ```bash
   {
@@ -328,11 +328,11 @@ docker logs -f dify-on-wechat  # 查看二维码并登录
 
 ```
 
-继续参照**2.2.1小节**启动程序并扫码登录，然后给微信机器人发送消息，进行测试
+继续参照 **2.2.1 小节 ** 启动程序并扫码登录，然后给微信机器人发送消息，进行测试
 
 <figure><img src="../../.gitbook/assets/agent-on-wechat.jpg" alt=""><figcaption></figcaption></figure>
 
-可以看到微信机器人可以正常使用搜索和绘画工具。再一次恭喜你，把Dify Agent应用接入微信。也恭喜我，写到这里可以先睡觉了。
+可以看到微信机器人可以正常使用搜索和绘画工具。再一次恭喜你，把 Dify Agent 应用接入微信。也恭喜我，写到这里可以先睡觉了。
 
 ### 2.5. 把工作流接入微信
 
@@ -340,25 +340,25 @@ docker logs -f dify-on-wechat  # 查看二维码并登录
 
 <figure><img src="../../.gitbook/assets/create-workflow.jpg" alt=""><figcaption></figcaption></figure>
 
-首先你需要提前下载好我预先创建的DSL文件，[点击此处下载](https://github.com/hanfangyuan4396/dify-on-wechat/blob/master/dsl/chat-workflow.yml)。下载完成后，进入工作室页面，点击导入DSL文件，上传提前下载好的文件，最后点击创建。
+首先你需要提前下载好我预先创建的 DSL 文件，[点击此处下载](https://github.com/hanfangyuan4396/dify-on-wechat/blob/master/dsl/chat-workflow.yml)。下载完成后，进入工作室页面，点击导入 DSL 文件，上传提前下载好的文件，最后点击创建。
 
 <figure><img src="../../.gitbook/assets/test-workflow.jpg" alt=""><figcaption></figcaption></figure>
 
 创建完成后，按照上图步骤进行测试。点击运行，输入你好，确保该工作流能正常输出结果。
 
-你可以在此工作流的基础上进行修改，但是对于**工作流类型**的应用，它的输入变量名称十分灵活，，为了更方便地接入微信机器人，[Dify on WeChat](https://github.com/hanfangyuan4396/dify-on-wechat)项目约定**工作流类型**的应用**输入变量命名为`query`**，**输出变量命名为`text`**。
+你可以在此工作流的基础上进行修改，但是对于 ** 工作流类型 ** 的应用，它的输入变量名称十分灵活，，为了更方便地接入微信机器人，[Dify on WeChat](https://github.com/hanfangyuan4396/dify-on-wechat) 项目约定 ** 工作流类型 ** 的应用 ** 输入变量命名为 `query`**，** 输出变量命名为 `text`**。
 
 <figure><img src="../../.gitbook/assets/publish-workflow.jpg" alt=""><figcaption></figcaption></figure>
 
-测试没有问题后，按照上图步骤发布应用，依次点击发布、更新、访问API。
+测试没有问题后，按照上图步骤发布应用，依次点击发布、更新、访问 API。
 
-#### 2.5.2. 生成工作流API密钥
+#### 2.5.2. 生成工作流 API 密钥
 
-我们同样参照**2.1.1小节（4）获取工作流**应用的**API密钥**与**API服务器地址**。
+我们同样参照 **2.1.1 小节（4）获取工作流 ** 应用的 **API 密钥 ** 与 **API 服务器地址 **。
 
 #### 2.5.3. 接入微信
 
-我们在项目根目录创建名为config.json的文件，文件内容如下，同样把**dify\_api\_base**配置为**工作流**应用的API服务器地址；**dify\_api\_key**配置为**工作流**应用的API密钥，注意该应用为**工作流**类型应用，还需要把**dify\_app\_type**设置为**workflow**，其他配置保持不变
+我们在项目根目录创建名为 config.json 的文件，文件内容如下，同样把 **dify\_api\_base** 配置为 ** 工作流 ** 应用的 API 服务器地址；**dify\_api\_key** 配置为 ** 工作流 ** 应用的 API 密钥，注意该应用为 ** 工作流 ** 类型应用，还需要把 **dify\_app\_type** 设置为 **workflow**，其他配置保持不变
 
 ```bash
   {
@@ -375,34 +375,35 @@ docker logs -f dify-on-wechat  # 查看二维码并登录
 
 ```
 
-同样参照**2.2.1小节**启动程序并扫码登录，然后给微信机器人发送消息，进行测试。
+同样参照 **2.2.1 小节 ** 启动程序并扫码登录，然后给微信机器人发送消息，进行测试。
 
 <figure><img src="../../.gitbook/assets/workflow-on-wechat.jpg" alt=""><figcaption></figcaption></figure>
 
-可以看到机器人成功接通了工作流api并进行了回复，至此我们已经完全掌握了如何创建Dify所有类型的应用：基础聊天助手、工作流聊天助手、智能助手、工作流，我们也学会了如何把上述应用发布为API，并接入微信。
+可以看到机器人成功接通了工作流 api 并进行了回复，至此我们已经完全掌握了如何创建 Dify 所有类型的应用：基础聊天助手、工作流聊天助手、智能助手、工作流，我们也学会了如何把上述应用发布为 API，并接入微信。
 
 接下来我将会介绍如何把应用接入到微信的其他通道，如公众号、企业微信应用、企业微信客服等。
 
-## 3. Dify接入企业微信个人号（仅限windows环境）
+## 3. Dify 接入企业微信个人号（仅限 windows 环境）
 
-> 1. 有**封号风险**，请使用企业微信**小号**测试
-> 2. 在登录旧版本的企业微信时可能会出现企业微信版本过低，无法登录情况，参考[issue1525](https://github.com/zhayujie/chatgpt-on-wechat/issues/1525)，请尝试更换其他企业微信号重试
+> 1. 有 ** 封号风险 **，请使用企业微信 ** 小号 ** 测试
+> 2. 在登录旧版本的企业微信时可能会出现企业微信版本过低，无法登录情况，参考 [issue1525](https://github.com/zhayujie/chatgpt-on-wechat/issues/1525)，请尝试更换其他企业微信号重试
 
 ### 3.1. 下载安装企业微信
 
-确保你有一台windows系统的电脑，然后在此电脑下载安装特定版本的企业微信，[官方下载链接](https://dldir1.qq.com/wework/work\_weixin/WeCom\_4.0.8.6027.exe)，[备用下载链接](https://www.alipan.com/s/UxQHrZ5WoxS)。
+确保你有一台 windows 系统的电脑，然后在此电脑下载安装特定版本的企业微信，[官方下载链接](https://dldir1.qq.com/wework/work\_weixin/WeCom\_4.0.8.6027.exe)，[备用下载链接](https://www.alipan.com/s/UxQHrZ5WoxS)。
 
-笔者目前企业微信最新版本为4.1.33.6009。即使电脑端下载了旧版本的，然后用手机扫码登录，也会被提示版本过低需要升级pc端版本，且无法避免，ntwork-whl只兼容了固定版本企业微信客户端，最新版本没有兼容。
+笔者目前企业微信最新版本为 4.1.33.6009。即使电脑端下载了旧版本的，然后用手机扫码登录，也会被提示版本过低需要升级 pc 端版本，且无法避免，ntwork-whl 只兼容了固定版本企业微信客户端，最新版本没有兼容。
 解决方案如下：
-1. 下载并安装最新版本和4.0.8.6027版本的企业微信
+
+1. 下载并安装最新版本和 4.0.8.6027 版本的企业微信
 <figure><img src="../../.gitbook/assets/dify-on-wechat/download_old_new_wework.png" alt=""><figcaption></figcaption></figure>
 
-● wxwork_last文件夹为最新版本的企业微信
-● WxWork文件夹为4.0.8.6027版本
+● wxwork_last 文件夹为最新版本的企业微信
+● WxWork 文件夹为 4.0.8.6027 版本
 
 2. 先打开最新版本的企业微信，并扫码登录
 <figure><img src="../../.gitbook/assets/dify-on-wechat/open_last_wework.png" alt=""><figcaption></figcaption></figure>
-打开Wxwork_last/wxwork.exe文件，运行最新版本的企业微信，扫码登录
+打开 Wxwork_last/wxwork.exe 文件，运行最新版本的企业微信，扫码登录
 
 3. 登录成功后，打开设置，勾选上启动企业微信后自动登录，去掉自动更新的选项。然后关闭最新版本的企业微信程序
 <figure><img src="../../.gitbook/assets/dify-on-wechat/change_wework_config.png" alt=""><figcaption></figcaption></figure>
@@ -411,27 +412,27 @@ docker logs -f dify-on-wechat  # 查看二维码并登录
 
 4. 现在再打开旧版本的企业微信，就可以直接登录了
 <figure><img src="../../.gitbook/assets/dify-on-wechat/open_old_wework.png" alt=""><figcaption></figcaption></figure>
-运行wxwork/wxwork.exe即可。
+运行 wxwork/wxwork.exe 即可。
 
-### 3.2. 创建Dify应用
+### 3.2. 创建 Dify 应用
 
-我们已经在前面的**2.1.1**、**2.3.2**、**2.4.1**与**2.5.1**小节分别介绍了创建基础聊天助手、工作流聊天助手、智能助手、工作流这4种不同的Dify应用，你可以根据上面的教程任意创建一种应用。
+我们已经在前面的 **2.1.1**、**2.3.2**、**2.4.1** 与 **2.5.1** 小节分别介绍了创建基础聊天助手、工作流聊天助手、智能助手、工作流这 4 种不同的 Dify 应用，你可以根据上面的教程任意创建一种应用。
 
-### 3.3. 下载安装Dify on WeChat
+### 3.3. 下载安装 Dify on WeChat
 
-根据 **2.1.2(2)** 步骤，下载代码并安装依赖，为了后续能按照ntwork依赖，**请确保你安装的python版本为3.8、3.9或3.10**。
+根据 **2.1.2 (2)** 步骤，下载代码并安装依赖，为了后续能按照 ntwork 依赖，** 请确保你安装的 python 版本为 3.8、3.9 或 3.10**。
 
-### 3.4. 安装ntwork依赖
+### 3.4. 安装 ntwork 依赖
 
-由于ntwork的安装源不是很稳定，可以下载对应的whl文件，使用whl文件离线安装ntwork
+由于 ntwork 的安装源不是很稳定，可以下载对应的 whl 文件，使用 whl 文件离线安装 ntwork。
 
-首先需要查看你的python版本，在命令行中输入python查看版本信息，然后在[ntwork-whl](https://github.com/hanfangyuan4396/ntwork-bin-backup/tree/main/ntwork-whl)目录下找到对应的whl文件，运行`pip install xx.whl`安装ntwork依赖，注意"xx.whl"更换为whl文件的**实际路径**。
+首先需要查看你的 python 版本，在命令行中输入 python 查看版本信息，然后在 [ntwork-whl](https://github.com/hanfangyuan4396/ntwork-bin-backup/tree/main/ntwork-whl) 目录下找到对应的 whl 文件，运行 `pip install xx.whl` 安装 ntwork 依赖，注意 "xx.whl" 更换为 whl 文件的 ** 实际路径 **。
 
-例如我的python版本信息为
+例如我的 python 版本信息为：
 
 "Python 3.8.5 (default, Sep 3 2020, 21:29:08) \[MSC v.1916 64 bit (AMD64)]"
 
-可以看到python版本是**3.8.5**，并且是**AMD64**，所以对应的whl文件为**ntwork-0.1.3-cp38-cp38-win\_amd64.whl**，需要执行如下命令安装
+可以看到 python 版本是 **3.8.5**，并且是 **AMD64**，所以对应的 whl 文件为 **ntwork-0.1.3-cp38-cp38-win\_amd64.whl**，需要执行如下命令安装
 
 ```sh
 pip install your-path/ntwork-0.1.3-cp38-cp38-win_amd64.whl
@@ -439,7 +440,7 @@ pip install your-path/ntwork-0.1.3-cp38-cp38-win_amd64.whl
 
 ### 3.5. 填写配置文件
 
-我们在Dify on WeChat项目根目录创建名为config.json的文件，下面是以Dify智能助手应用作为示例的配置文件，请正确填写你刚刚创建应用的dify\_api\_base、dify\_api\_key、dify\_app\_type信息，请注意channel\_type填写为 **wework**
+我们在 Dify on WeChat 项目根目录创建名为 config.json 的文件，下面是以 Dify 智能助手应用作为示例的配置文件，请正确填写你刚刚创建应用的 dify\_api\_base、dify\_api\_key、dify\_app\_type 信息，请注意 channel\_type 填写为 **wework**。
 
 ```json
 { 
@@ -457,42 +458,42 @@ pip install your-path/ntwork-0.1.3-cp38-cp38-win_amd64.whl
 
 ### 3.6. 登录企业微信
 
-务必提前在电脑扫码登录企业微信
+务必提前在电脑扫码登录企业微信。
 
 ### 3.7. 启动微信个人号机器人
 
-运行如下命令启动机器人
+运行如下命令启动机器人：
 
 ```sh
 cd dify-on-wechat
 python app.py
 ```
 
-我们可以看到终端输出如下信息，**等待wework程序初始化完成**，最后启动成功\~
+我们可以看到终端输出如下信息，** 等待 wework 程序初始化完成 **，最后启动成功 \~
 
 ```
-[INFO][2024-04-30 21:16:04][wework_channel.py:185] - 等待登录······
+[INFO][2024-04-30 21:16:04][wework_channel.py:185] - 等待登录・・・・・・
 [INFO][2024-04-30 21:16:05][wework_channel.py:190] - 登录信息:>>>user_id:xxx>>>>>>>>name:
-[INFO][2024-04-30 21:16:05][wework_channel.py:191] - 静默延迟60s，等待客户端刷新数据，请勿进行任何操作······
-[INFO][2024-04-30 21:17:05][wework_channel.py:224] - wework程序初始化完成········
+[INFO][2024-04-30 21:16:05][wework_channel.py:191] - 静默延迟 60s，等待客户端刷新数据，请勿进行任何操作・・・・・・
+[INFO][2024-04-30 21:17:05][wework_channel.py:224] - wework 程序初始化完成・・・・・・・・
 ```
 
 <figure><img src="../../.gitbook/assets/agent-on-wework.jpg" alt=""><figcaption></figcaption></figure>
 
 现在我们给机器人发送消息，可以看到接入成功！
 
-## 4. Dify接入公众号
+## 4. Dify 接入公众号
 
-待更新\~
+待更新 \~
 
-## 5. Dify接入企业微信应用
+## 5. Dify 接入企业微信应用
 
-待更新\~
+待更新 \~
 
-## 6. Dify接入企业微信客服
+## 6. Dify 接入企业微信客服
 
-待更新\~
+待更新 \~
 
 ## 7. 后记
 
-我是社畜打工人，精力实在有限，只能晚上下班还有周末空闲时间维护[Dify on WeChat](https://github.com/hanfangyuan4396/dify-on-wechat)项目，单靠我个人开发项目进度十分缓慢，希望大家能一起参与进来这个项目，多多提PR，让Dify的生态变得更好\~
+我是社畜打工人，精力实在有限，只能晚上下班还有周末空闲时间维护 [Dify on WeChat](https://github.com/hanfangyuan4396/dify-on-wechat) 项目，单靠我个人开发项目进度十分缓慢，希望大家能一起参与进来这个项目，多多提 PR，让 Dify 的生态变得更好 \~
