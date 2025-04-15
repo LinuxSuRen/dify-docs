@@ -1,7 +1,5 @@
 # Dify Cloud
 
-
-
 {% hint style="info" %}
 Note: Dify is currently in the Beta testing phase. If there are inconsistencies between the documentation and the product, please refer to the actual product experience.
 {% endhint %}
