@@ -64,9 +64,9 @@ EXPOSE_NGINX_PORT=80
 EXPOSE_NGINX_SSL_PORT=443
 ```
 
-### 6. docker-api-1でデータベース接続エラーが発生した場合の解決方法は？
+### 6. docker-api-1 でのデータベース接続エラーの解決方法とは？
 
-**問題の詳細**：`http://localhost`にアクセスすると`Internal Server Error`が表示され、`docker-api-1`のログに次のようなエラーが表示される場合：
+**問題**：`http://localhost`アクセス時に`Internal Server Error`が発生し、`docker-api-1`のログに以下エラーが記録される場合：
 
 ```bash
 FATAL:  no pg_hba.conf entry for host "172.19.0.7", user "postgres", database "dify", no encryption
