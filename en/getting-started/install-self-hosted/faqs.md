@@ -11,11 +11,11 @@ docker compose down
 docker compose up -d
 ```
 
-If you still haven't received the email, please check if the email service is working properly and whether the email has been placed in the trash list.
+If you still haven't received the email, please check if the email service is working properly and whether the email has been placed in the spam folder.
 
 ### 2. How to handle if the workflow is too complex and exceeds the node limit?
 
-In the community edition, you can manually adjust the MAX\_TREE\_DEPTH limit for single branch depth in `web/app/components/workflow/constants.ts.` Our default value is 50, and it's important to note that excessively deep branches may affect performance in self-hosted scenarios.
+In the community edition, you can manually adjust the MAX\_TREE\_DEPTH limit for single branch depth in `web/app/components/workflow/constants.ts`. Our default value is 50, and it's important to note that excessively deep branches may affect performance in self-hosted scenarios.
 
 ### 3. How to specify the runtime for each workflow node?
 
@@ -31,7 +31,7 @@ docker exec -it docker-api-1 flask reset-password
 
 It will prompt you to enter the email address and the new password. Example:
 
-```
+```bash
 dify@my-pc:~/hello/dify/docker$ docker compose up -d
 [+] Running 9/9
  ✔ Container docker-web-1         Started                                                              0.1s 
@@ -59,10 +59,22 @@ If you're using Docker Compose, you can customize the access port by modifying t
 
 You need to modify the Nginx configuration:
 
-```json
+```docker
 EXPOSE_NGINX_PORT=80
 EXPOSE_NGINX_SSL_PORT=443
 ```
 
+### 6. How to resolve database connection errors in docker-api-1?
 
-Other self-host issue please check this document [Self-Host Related](../../learn-more/faq/install-faq.md)。
+**Issue Details**: When accessing `http://localhost`, you may encounter an `Internal Server Error`; and the following message might appear in the `docker-api-1` logs:
+
+```bash
+FATAL:  no pg_hba.conf entry for host "172.19.0.7", user "postgres", database "dify", no encryption
+```
+
+**Solution**: Update the `/var/lib/postgresql/pgdata/pg_hba.conf` file inside the db container to allow connections from the network segment mentioned in the error message. For example:
+
+```bash
+docker exec -it docker-db-1 sh -c "echo 'host all all 172.19.0.0/16 trust' >> /var/lib/postgresql/data/pgdata/pg_hba.conf"
+docker-compose restart
+```

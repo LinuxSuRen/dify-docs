@@ -31,7 +31,7 @@ docker exec -it docker-api-1 flask reset-password
 
 请按照提示输入邮箱地址和新密码，例如：
 
-```
+```bash
 dify@my-pc:~/hello/dify/docker$ docker compose up -d
 [+] Running 9/9
  ✔ Container docker-web-1         Started                                                              0.1s 
@@ -55,7 +55,7 @@ Password reset successfully.
 
 ### 5. 如何修改页面端口？
 
-如果你使用 Docker Compose 部署，你可以通过修改`.env`配置来自定义 Dify 的访问端口。
+如果你使用 Docker Compose 部署，你可以通过修改 `.env` 配置自定义 Dify 的访问端口。
 
 你需要修改 Nginx 相关配置：
 
@@ -64,14 +64,19 @@ EXPOSE_NGINX_PORT=80
 EXPOSE_NGINX_SSL_PORT=443
 ```
 
-
 其他相关的部署问题请参考[本地部署相关](../../learn-more/faq/install-faq.md)。
 
 ### 6. docker-api-1 出现数据库连接报错如何处理？
 
-问题详情：访问 `http://localhost` 时提示 `Internal Server Error` 错误；且 docker-api-1 的日志中出现了类似错误：
+**问题详情**：访问 `http://localhost` 时提示 `Internal Server Error` 错误；且 `docker-api-1` 的日志中出现了类似错误：
 
 ```bash
 FATAL:  no pg_hba.conf entry for host "172.19.0.7", user "postgres", database "dify", no encryption
 ```
 
+**解决办法**：修改 db 容器下的 `/var/lib/postgresql/pgdata/pg_hba.conf`，将报错提示中所对应的网段添加至授权名单，例如：
+
+```bash
+docker exec -it docker-db-1 sh -c "echo 'host all all 172.19.0.0/16 trust' >> /var/lib/postgresql/data/pgdata/pg_hba.conf"
+docker-compose restart
+```

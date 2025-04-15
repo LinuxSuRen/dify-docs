@@ -12,7 +12,7 @@
   * [aaPanelでのデプロイ方法](getting-started/install-self-hosted/bt-panel.md)
   * [フロントエンドDockerコンテナを単独起動](getting-started/install-self-hosted/start-the-frontend-docker-container.md)
   * [環境変数の説明](getting-started/install-self-hosted/environments.md)
-  * [よくある質問](getting-started/install-self-hosted/faq.md)
+  * [よくある質問](getting-started/install-self-hosted/faqs.md)
 * [Dify Premium](getting-started/dify-premium.md)
 * [Dify 教育版](getting-started/dify-for-education.md)
 

@@ -6,7 +6,7 @@
 
 設定の変更後は、以下のコマンドを実行して、サービスをリスタートさせてください。
 
-```javascript
+```bash
 docker compose down
 docker compose up -d
 ```
@@ -31,7 +31,7 @@ docker exec -it docker-api-1 flask reset-password
 
 メールアドレスと新しいパスワードを入力するプロンプトが表示されます。例えば：
 
-```
+```bash
 dify@my-pc:~/hello/dify/docker$ docker compose up -d
 [+] Running 9/9
  ✔ Container docker-web-1         Started                                                              0.1s 
@@ -59,10 +59,24 @@ Docker Compose を使用してデプロイする場合、`.env` 設定を変更�
 
 Nginx 関連の設定を変更する必要があります：
 
-```
+```docker
 EXPOSE_NGINX_PORT=80
 EXPOSE_NGINX_SSL_PORT=443
 ```
 
+### 6. docker-api-1でデータベース接続エラーが発生した場合の解決方法は？
 
-他のデプロイに関する質問は[ここに](../../learn-more/faq/install-faq.md)います。
+**問題の詳細**：`http://localhost`にアクセスすると`Internal Server Error`が表示され、`docker-api-1`のログに次のようなエラーが表示される場合：
+
+```bash
+FATAL:  no pg_hba.conf entry for host "172.19.0.7", user "postgres", database "dify", no encryption
+```
+
+**解決策**：dbコンテナ内の`/var/lib/postgresql/pgdata/pg_hba.conf`を変更し、エラーメッセージに記載されているネットワークセグメントを認証リストに追加します。例：
+
+```bash
+docker exec -it docker-db-1 sh -c "echo 'host all all 172.19.0.0/16 trust' >> /var/lib/postgresql/data/pgdata/pg_hba.conf"
+docker-compose restart
+```
+
+他のデプロイに関する質問は[ローカルデプロイに関する](../../learn-more/faq/install-faq.md)をご確認ください。
