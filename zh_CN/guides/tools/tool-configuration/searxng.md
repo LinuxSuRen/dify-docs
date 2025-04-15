@@ -31,10 +31,9 @@ docker run --rm -d -p 8081:8080 -v "${PWD}/api/core/tools/provider/builtin/searx
 
 在 `工具 > SearXNG > 去认证` 中填写访问地址，建立 Dify 服务与 SearXNG 服务的连接。SearXNG 的 Docker 内网地址一般是 `http://host.docker.internal:8081`。
 
-
 ---
 
-# 在 Linux VM 上托管 SearXNG 作为私有实例
+## 在 Linux VM 上托管 SearXNG 作为私有实例
 
 本节将指导你如何在 **Linux VM** 上托管 SearXNG 并确保它可以与 Dify 集成。
 
@@ -173,7 +172,7 @@ ip addr show
 
 ---
 
-# 4. 将 SearXNG 与 Dify 集成
+## 4. 将 SearXNG 与 Dify 集成
 
 一旦你的 SearXNG 实例在 Linux VM 上运行，你可以将其与 Dify 进行连接。
 
@@ -189,7 +188,7 @@ http://<your-linux-vm-ip>:8081
 
 ---
 
-## 5. 测试 SearXNG 集成
+### 5. 测试 SearXNG 集成
 
 你可以通过 `curl` 命令测试 SearXNG 服务是否正常工作：
 

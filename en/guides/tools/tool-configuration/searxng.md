@@ -29,7 +29,7 @@ Fill in the access address in "Tools > SearXNG > Authenticate" to establish a co
 
 ---
 
-# Hosting SearXNG on a Linux VM for a Private Instance
+## Hosting SearXNG on a Linux VM for a Private Instance
 
 This section covers how to host **SearXNG** on a **Linux VM** and make it accessible to Dify.
 
@@ -166,7 +166,7 @@ For the SearXNG service to be accessed from other machines or services (like Dif
 
 ---
 
-# 4. Connect SearXNG with Dify
+## 4. Connect SearXNG with Dify
 
 Once your SearXNG instance is up and running on the Linux VM, you need to authenticate it in Dify.
 
@@ -183,7 +183,7 @@ http://<your-linux-vm-ip>:8081
 
 ---
 
-## 5. Testing SearXNG Integration
+### 5. Testing SearXNG Integration
 
 You can test if everything is working correctly by making a sample search using `curl`:
 
