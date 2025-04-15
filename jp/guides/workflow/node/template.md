@@ -42,7 +42,6 @@ Jinja2のPythonテンプレート言語を使って、データ変換やテキ�
 
 Jinjaの[公式ドキュメント](https://jinja.palletsprojects.com/en/3.1.x/templates/)を参考にして、さまざまなタスクを実行するためのより複雑なテンプレートを作成することができます。
 
-
 **例3：** HTMLフォームのレンダリングをサポート
 
 ```html

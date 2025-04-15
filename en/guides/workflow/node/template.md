@@ -28,7 +28,7 @@ This template node can then be used within a Chatflow to return intermediate out
 
 > The `Answer` node in a Chatflow is non-terminal. It can be inserted anywhere to output responses at multiple points within the flow.
 
-Support for rendering HTML forms
+Example: Support for rendering HTML forms:
 
 ```html
 <form data-format="json"> // Default to text
