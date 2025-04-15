@@ -22,7 +22,7 @@
 
 <figure><img src="https://assets-docs.dify.ai/2024/12/bfee6805544a811553c5fe8d28227694.png" alt=""><figcaption></figcaption></figure>
 
-Dify 上可以创建 4 种不同的应用类型，分别是聊天助手、文本生成应用、Agent 和工作流。
+Dify 上可以创建 5 种不同的应用类型，分别是聊天助手、文本生成应用、Agent、Workflow 和 Chatflow。
 
 创建应用时，你需要给应用起一个名字、选择合适的图标，或者上传喜爱的图片用作图标、使用一段清晰的文字描述此应用的用途，以便后续应用在团队内的使用。
 
