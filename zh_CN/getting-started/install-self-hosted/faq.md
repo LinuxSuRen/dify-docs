@@ -80,3 +80,7 @@ FATAL:  no pg_hba.conf entry for host "172.19.0.7", user "postgres", database "d
 docker exec -it docker-db-1 sh -c "echo 'host all all 172.19.0.0/16 trust' >> /var/lib/postgresql/data/pgdata/pg_hba.conf"
 docker-compose restart
 ```
+
+### 7. 如何修改知识库文件上传大小限制？
+
+请修改 `.env` 文件中的 `UPLOAD_FILE_SIZE_LIMIT` 参数默认限制，同时还需要同步修改 `NGINX_CLIENT_MAX_BODY_SIZE` 参数的值以避免潜在异常。

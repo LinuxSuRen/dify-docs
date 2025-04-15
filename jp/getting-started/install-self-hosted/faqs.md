@@ -64,9 +64,11 @@ EXPOSE_NGINX_PORT=80
 EXPOSE_NGINX_SSL_PORT=443
 ```
 
+他のデプロイに関する質問は[ローカルデプロイに関する](../../learn-more/faq/install-faq.md)をご確認ください。
+
 ### 6. docker-api-1 でのデータベース接続エラーの解決方法とは？
 
-**問題**：`http://localhost`アクセス時に`Internal Server Error`が発生し、`docker-api-1`のログに以下エラーが記録される場合：
+**問題の詳細**：`http://localhost`にアクセスする際に`Internal Server Error`が表示され、`docker-api-1`のログに以下のようなエラーが記録される場合：
 
 ```bash
 FATAL:  no pg_hba.conf entry for host "172.19.0.7", user "postgres", database "dify", no encryption
@@ -79,4 +81,6 @@ docker exec -it docker-db-1 sh -c "echo 'host all all 172.19.0.0/16 trust' >> /v
 docker-compose restart
 ```
 
-他のデプロイに関する質問は[ローカルデプロイに関する](../../learn-more/faq/install-faq.md)をご確認ください。
+### 7. ナレッジベースのファイルアップロードサイズ制限を変更するには？
+
+`.env`ファイル内の`UPLOAD_FILE_SIZE_LIMIT`パラメータを変更して、デフォルトの制限を調整できます。同時に、潜在的な問題を避けるために`NGINX_CLIENT_MAX_BODY_SIZE`パラメータの値も更新する必要があります。

@@ -64,6 +64,8 @@ EXPOSE_NGINX_PORT=80
 EXPOSE_NGINX_SSL_PORT=443
 ```
 
+For other deployment-related issues, please refer to [Local Deployment FAQ](../../learn-more/faq/install-faq.md).
+
 ### 6. How to resolve database connection errors in docker-api-1?
 
 **Issue Details**: When accessing `http://localhost`, you may encounter an `Internal Server Error`; and the following message might appear in the `docker-api-1` logs:
@@ -78,3 +80,7 @@ FATAL:  no pg_hba.conf entry for host "172.19.0.7", user "postgres", database "d
 docker exec -it docker-db-1 sh -c "echo 'host all all 172.19.0.0/16 trust' >> /var/lib/postgresql/data/pgdata/pg_hba.conf"
 docker-compose restart
 ```
+
+### 7. How to change the file size limit for knowledge base uploads?
+
+Modify the `UPLOAD_FILE_SIZE_LIMIT` parameter in the `.env` file to adjust the default limit. Additionally, you should also sync the `NGINX_CLIENT_MAX_BODY_SIZE` parameter value to avoid potential issues.
