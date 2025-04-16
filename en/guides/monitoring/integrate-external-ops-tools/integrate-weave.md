@@ -1,5 +1,7 @@
 # Integrate W&B Weave
 
+> The service is available on community version ≥ v0.xxx
+
 ### What is W&b Weave
 
 Weights & Biases (W&B) Weave is a framework for tracking, experimenting with, evaluating, deploying, and improving LLM-based applications. Designed for flexibility and scalability, Weave supports every stage of your LLM application development workflow:
@@ -17,30 +19,29 @@ Get your API key
 
 Then, create a Weights & Biases (W&B) account at https://wandb.ai and copy your API key from https://wandb.ai/authorize
 
-
 #### 2. Integrating W&B Weave with Dify
 
 Configure Weave in the Dify application. Open the application you need to monitor, open **Monitoring** in the side menu, and select **Tracing app performance** on the page.
 
-<figure><img src="../../../.gitbook/assets/tracing-app-performance-weave.png" alt=""><figcaption><p>Tracing app performance (Weave)</p></figcaption></figure>
+![](https://assets-docs.dify.ai/2025/04/c33e8fda75ee9052ed23c8690e314862.png)
 
 After clicking configure, paste the **API Key** and **project name**, also specify the **W&B entity**(optionally, default is your username) into the configuration and save.
 
-<figure><img src="../../../.gitbook/assets/config-weave.png" alt=""><figcaption><p>Configure W&B Weave</p></figcaption></figure>
+![](https://assets-docs.dify.ai/2025/04/60bce1ae7b883825b13526d172ae0073.png)
 
 Once successfully saved, you can view the monitoring status on the current page.
 
-<figure><img src="../../../.gitbook/assets/integrate-with-weave.png" alt=""><figcaption><p>View configuration status</p></figcaption></figure>
+![](https://assets-docs.dify.ai/2025/04/9486cee7bbb61f069842c9ea860e679c.png)
 
 ### Viewing Monitoring Data in Weave
 
 Once configured, the debug or production data from applications within Dify can be monitored in Weave.
 
-<figure><img src="../../../.gitbook/assets/debug-app-in-dify.png" alt=""><figcaption><p>Debugging Applications in Dify</p></figcaption></figure>
+![](https://assets-docs.dify.ai/2025/04/a1c5aa80325e6d0223d48a178393baec.png)
 
 When you switch to Weave, you can view detailed operation logs of Dify applications in the dashboard.
 
-<figure><img src="../../../.gitbook/assets/viewing-app-data-in-weave.png" alt=""><figcaption><p>Viewing application data in Weave</p></figcaption></figure>
+![](https://assets-docs.dify.ai/2025/04/2cb04027c00b606029fcc26af2801bfe.png)
 
 Detailed LLM operation logs through Weave will help you optimize the performance of your Dify application.
 
@@ -53,7 +54,7 @@ Detailed LLM operation logs through Weave will help you optimize the performance
 | Workflow                                 | Weave Trace                  |
 | ---------------------------------------- | ---------------------------- |
 | workflow\_app\_log\_id/workflow\_run\_id | id                           |
-| user\_session\_id                        | - placed in metadata         |
+| user\_session\_id                        | placed in metadata         |
 | workflow\_{id}                           | name                         |
 | start\_time                              | start\_time                  |
 | end\_time                                | end\_time                    |
@@ -106,7 +107,7 @@ Detailed LLM operation logs through Weave will help you optimize the performance
 | Chat                             | Weave Trace                  |
 | -------------------------------- | ---------------------------- |
 | message\_id                      | id                           |
-| user\_session\_id                | - placed in metadata         |
+| user\_session\_id                | placed in metadata         |
 | “message\_{id}"                  | name                         |
 | start\_time                      | start\_time                  |
 | end\_time                        | end\_time                    |
@@ -153,7 +154,7 @@ Detailed LLM operation logs through Weave will help you optimize the performance
 
 | Moderation    | Weave Trace          |
 | ------------- | -------------------- |
-| user\_id      | - placed in metadata |
+| user\_id      | placed in metadata |
 | “moderation"  | name                 |
 | start\_time   | start\_time          |
 | end\_time     | end\_time            |
@@ -186,7 +187,7 @@ Detailed LLM operation logs through Weave will help you optimize the performance
 
 | Suggested Question     | Weave Trace          |
 | ---------------------- | -------------------- |
-| user\_id               | - placed in metadata |
+| user\_id               | placed in metadata |
 | suggested\_question    | name                 |
 | start\_time            | start\_time          |
 | end\_time              | end\_time            |
@@ -231,7 +232,7 @@ Detailed LLM operation logs through Weave will help you optimize the performance
 
 | Dataset Retrieval     | Weave Trace          |
 | --------------------- | -------------------- |
-| user\_id              | - placed in metadata |
+| user\_id              | placed in metadata |
 | dataset\_retrieval    | name                 |
 | start\_time           | start\_time          |
 | end\_time             | end\_time            |
@@ -266,7 +267,7 @@ Detailed LLM operation logs through Weave will help you optimize the performance
 
 | Tool                  | Weave Trace          |
 | --------------------- | -------------------- |
-| user\_id              | - placed in metadata |
+| user\_id              | placed in metadata |
 | tool\_name            | name                 |
 | start\_time           | start\_time          |
 | end\_time             | end\_time            |
@@ -311,7 +312,7 @@ Detailed LLM operation logs through Weave will help you optimize the performance
 
 | Generate Name     | Weave Trace          |
 | ----------------- | -------------------- |
-| user\_id          | - placed in metadata |
+| user\_id          | placed in metadata |
 | generate\_name    | name                 |
 | start\_time       | start\_time          |
 | end\_time         | end\_time            |

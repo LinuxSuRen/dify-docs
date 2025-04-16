@@ -119,6 +119,7 @@
     * [Integrate LangSmith](guides/monitoring/integrate-external-ops-tools/integrate-langsmith.md)
     * [Integrate Langfuse](guides/monitoring/integrate-external-ops-tools/integrate-langfuse.md)
     * [Integrate Opik](guides/monitoring/integrate-external-ops-tools/integrate-opik.md)
+    * [Integrate Opik](guides/monitoring/integrate-external-ops-tools/integrate-weave.md)
 * [Extension](guides/extension/README.md)
   * [API-Based Extension](guides/extension/api-based-extension/README.md)
     * [External Data Tool](guides/extension/api-based-extension/external-data-tool.md)
