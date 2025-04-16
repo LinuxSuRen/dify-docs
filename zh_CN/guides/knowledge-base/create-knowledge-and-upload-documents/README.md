@@ -20,8 +20,8 @@
 [setting-indexing-methods.md](setting-indexing-methods.md)
 {% endcontent-ref %}
 
-5. 等待分段嵌入
-6. 完成上传，在应用内关联知识库并使用。你可以参考[在应用内集成知识库](../integrate-knowledge-within-application.md)，搭建出能够基于知识库进行问答的 LLM 应用。如需修改或管理知识库，请参考[知识库管理与文档维护](../knowledge-and-documents-maintenance/)。
+4. 等待分段嵌入
+5. 完成上传，在应用内关联知识库并使用。你可以参考[在应用内集成知识库](../integrate-knowledge-within-application.md)，搭建出能够基于知识库进行问答的 LLM 应用。如需修改或管理知识库，请参考[知识库管理与文档维护](../knowledge-and-documents-maintenance/)。
 
 ![完成知识库的创建](https://assets-docs.dify.ai/2024/12/a3362a1cd384cb2b539c9858de555518.png)
 
