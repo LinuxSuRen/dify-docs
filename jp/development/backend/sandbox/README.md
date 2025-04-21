@@ -38,7 +38,7 @@ sudo yum install pkgconfig gcc libseccomp-devel git wget
 Go開発環境をインストールします（Go 1.20.6以上を推奨）：
 
 ```bash
-# Go 1.21をインストール
+# Go 1.20.6をインストール
 sudo apt-get install -y golang-1.20.6
 ```
 

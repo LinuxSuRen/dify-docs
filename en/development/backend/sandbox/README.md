@@ -38,7 +38,7 @@ sudo yum install pkgconfig gcc libseccomp-devel git wget
 Install Go development environment (recommended Go 1.20.6 or higher):
 
 ```bash
-# Install Go 1.21
+# Install Go 1.20.6
 sudo apt-get install -y golang-1.20.6
 ```
 
@@ -71,7 +71,7 @@ If you need additional Python dependencies, follow these steps:
 3. Rebuild DifySandbox.
 
 
-> Adding new dependencies may introduce additional permission requirements. Please carefully evaluate security implications. If you cannot fully control potential security risks, it is not recommended to change permission configurations.
+> Adding new dependencies may introduce additional permission requirements. Please carefully evaluate security implications. Do not change permission configurations if you cannot fully assess the potential security risks.
 
 ### Contribution
 
