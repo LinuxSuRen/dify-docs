@@ -133,15 +133,18 @@ If you do not understand what these parameters are, you can choose to load prese
 
 **Structured Outputs**: Ensures LLM returns data in a usable, stable, and predictable format, helping users to control exactly how their LLM nodes returns data. 
 
-<Accordion title="JSON Schema Editor">
+<details>
+<summary>JSON Schema Editor</summary>
 
 The **JSON Schema Editor** in LLM nodes lets you define how you want your data structured. You can use either the **Visual Editor** for a user-friendly experience or the **JSON Schema** for more precise control.
 
-<Info>JSON Schema Editor supports structured outputs across all models:
+{% hint style="info" %}
+JSON Schema Editor supports structured outputs across all models:
 
 - Models with Native Support: Can directly use JSON Schema definitions.
 
-- Models without Native Support: Not all models handle structured outputs reliably. We wll include your schema in the prompt, but response formatting may vary by model.</Info>
+- Models without Native Support: Not all models handle structured outputs reliably. We wll include your schema in the prompt, but response formatting may vary by model.
+{% endhint %}
 
 **Get Started**
 
@@ -149,8 +152,7 @@ Access the editor through **LLM Node > Output Variables > Structured > Configure
 
 ![JSON Schema Editor](https://assets-docs.dify.ai/2025/04/646805384efa3cd85869d23a4d9735ad.png)
 
-<Tabs>
-    <Tab title="Visual Editor">
+***Visual Editor***
 
 **When to Use**
 
@@ -235,8 +237,7 @@ Click **Add Field** and set parameters below:
 }
 ```
 
-</Tab>
-<Tab title="JSON Schema">
+***JSON Schema***
 
 **When to Use**
 
@@ -309,10 +310,7 @@ Click **Add Field** and set parameters below:
 }
 ```
 
-  </Tab>
-</Tabs>
-
-</Accordion>
+</details>
 
 ***
 

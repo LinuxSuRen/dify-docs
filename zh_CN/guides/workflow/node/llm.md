@@ -144,10 +144,9 @@ LLM 节点中的 **JSON Schema 编辑器** 让你能够定义 LLM 返回的数�
 
 点击 **LLM 节点 > 输出变量**，打开 **结构化开关 > 配置**，即可进入 **JSON Schema 编辑器** 界面。JSON Schema 编辑器分为可视化编辑窗口与代码编辑窗口，两者可无缝切换。
 
-![]()
+![JSON Schema Editor](https://assets-docs.dify.ai/2025/04/646805384efa3cd85869d23a4d9735ad.png)
 
-{% tabs %}
-{% tab title="可视化编辑" %}
+***可视化编辑***
 
 **适用场景**
 
@@ -239,8 +238,8 @@ LLM 节点中的 **JSON Schema 编辑器** 让你能够定义 LLM 返回的数�
   ]
 }
 ```
-{% endtab %}
-{% tab title="代码编辑" %}
+
+***代码编辑***
 
 **适用场景**
 
@@ -337,9 +336,6 @@ LLM 节点中的 **JSON Schema 编辑器** 让你能够定义 LLM 返回的数�
   ]
 }
 ```
-{% endtab %}
-{% endtabs %}
-
 </details>
 
 ***
