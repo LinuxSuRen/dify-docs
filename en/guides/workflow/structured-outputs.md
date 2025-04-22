@@ -20,7 +20,7 @@ Define your output structure directly in tool parameters. See **[Tool](https://d
 
 ### Method 2: JSON Schema Editor
 
-Use the built-in editor in LLM nodes. See **[LLM](https://docs.dify.ai/guides/workflow/node/llm) > Advanced Features > Structured Outputs**.
+Use the built-in editor in LLM nodes. See **[LLM](https://docs.dify.ai/guides/workflow/node/llm) > Advanced Features > Structured Outputs** and **[LLM](https://docs.dify.ai/guides/workflow/node/llm) > Use Cases > Structured Outputs**.
 
 ## Error Handling
 

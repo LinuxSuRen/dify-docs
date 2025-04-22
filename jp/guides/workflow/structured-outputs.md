@@ -24,7 +24,7 @@ Difyの操作画面では、次の2つの方法でJSON形式での出力を実�
 
 ### 方法2: LLMノードのJSONスキーマエディタを使用する
 
-**[LLM](https://docs.dify.ai/ja-jp/guides/workflow/node/llm) > 高級機能 > 構造化出力**を参照してください。
+**[LLM](https://docs.dify.ai/ja-jp/guides/workflow/node/llm) > 高級機能 > 構造化出力** と **[LLM](https://docs.dify.ai/ja/guides/workflow/node/llm) > 活用事例 > 構造化出力**を参照してください。
 
 ## 例外処理
 

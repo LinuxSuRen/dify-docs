@@ -24,7 +24,7 @@
 
 ### 方式二：使用 LLM 节点中的 JSON Schema 编辑器
 
-请参阅 **[LLM](https://docs.dify.ai/zh-hans/guides/workflow/node/llm) > 高级功能 > 结构化输出**。
+请参阅 **[LLM](https://docs.dify.ai/zh-hans/guides/workflow/node/llm) > 高级功能 > 结构化输出** 与 **[LLM](https://docs.dify.ai/zh-hans/guides/workflow/node/llm) > 使用案例 > 结构化输出**。
 
 ## 异常处理方案
 
