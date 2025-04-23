@@ -16,7 +16,7 @@ Dify offers two ways to create structured outputs:
 
 ### Method 1: Tool Parameters
 
-Define your output structure directly in tool parameters. See **[Tool](https://docs.dify.ai/plugins/schema-definition/tool) > Data Structures > Return Variable Definitions**.
+Define your output structure directly in tool parameters. See **[How to Use JSON Schema Output in Dify?](https://docs.dify.ai/learn-more/extended-reading/how-to-use-json-schema-in-dify)**.
 
 ### Method 2: JSON Schema Editor
 

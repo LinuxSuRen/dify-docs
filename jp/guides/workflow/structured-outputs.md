@@ -20,7 +20,7 @@ Difyの操作画面では、次の2つの方法でJSON形式での出力を実�
 
 ### 方法1: ツール設定を直接行う
 
-**[Tool(ツール)](https://docs.dify.ai/ja-jp/plugins/schema-definition/tool) > データ構造 > 出力変数の定義**を参照してください。
+**[DifyでJSONスキーマ出力を使用する方法](https://docs.dify.ai/ja-jp/learn-more/extended-reading/how-to-use-json-schema-in-dify)**を参照してください。
 
 ### 方法2: LLMノードのJSONスキーマエディタを使用する
 

@@ -20,7 +20,7 @@
 
 ### 方式一：直接定义工具参数
 
-请参阅 **[Tool](https://docs.dify.ai/zh-hans/plugins/schema-definition/tool) > 数据结构 > 返回变量定义**。
+请参阅 **[如何使用 JSON Schema 让 LLM 输出遵循结构化格式的内容？](https://docs.dify.ai/zh-hans/learn-more/extended-reading/how-to-use-json-schema-in-dify)**。
 
 ### 方式二：使用 LLM 节点中的 JSON Schema 编辑器
 
