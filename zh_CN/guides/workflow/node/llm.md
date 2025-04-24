@@ -383,45 +383,8 @@ LLM 节点处理信息时有可能会遇到输入文本超过 Token 限制，未
 
 * **结构化输出**
 
-**场景**：你正在使用 Dify 构建一个用户反馈分析工作流。LLM 节点需要读取用户评价，并返回标准化的评分和评论内容，确保数据格式一致，便于后续节点处理。
+**案例：客户信息采集表单**
 
-**解决方案**：在工作流的 LLM 节点中，使用 **JSON Schema 编辑器** 定义结构化格式。这样能确保 LLM 生成的结果被限制在预设格式中，而非输出杂乱文本。
+你可以通过以下视频，了解如何使用结构化输出功能采集客户信息：
 
-**操作步骤**：
-
-1.  在 **LLM** 节点的 **JSON Schema 编辑器** 中，添加以下字段，确保 LLM 按照规定的结构输出数据：
-
-```
-{
-  "type": "object",
-  "properties": {
-    "rating": {
-      "type": "integer",
-      "description": "user's rating"
-    },
-    "comment": {
-      "type": "string",
-      "description": "user's comments"
-    }
-  },
-  "required": [
-    "rating",
-    "comment"
-  ]
-}
-```
-
-2.  在工作流的 **开始** 节点，输入一个用户评价，如：
-
-> "这个产品非常棒，使用体验很好！"
-
-3.  经过 **JSON Schema 编辑器** 的处理，AI 生成的 **结构化数据** 如下：
-
-```
-{
-  "structured_output": {
-    "comment": "这个产品非常棒，使用体验很好！",
-    "rating": 5
-  }
-}
-```
+{% embed url="https://youtu.be/u8NQFxrsaW0" %}

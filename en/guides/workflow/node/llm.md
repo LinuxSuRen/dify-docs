@@ -212,7 +212,7 @@ Click **Add Field** and set parameters below:
 
 1. Click the AI Generate icon, select a model (like GPT-4o), and describe what you need:
 
-  > “I need a JSON Schema for user profiles with username (string), age (number), and interests (array).”
+  > "I need a JSON Schema for user profiles with username (string), age (number), and interests (array)."
 
 2. Click **Generate** to create a schema:
 
@@ -285,7 +285,7 @@ Click **Add Field** and set parameters below:
 
 1. Click the AI Generate icon, select a model (like GPT-4o), and describe what you need:
 
-  > “I need a JSON Schema for user profiles with username (string), age (number), and interests (array).”
+  > "I need a JSON Schema for user profiles with username (string), age (number), and interests (array)."
 
 2. Click **Generate** to create a schema:
 
@@ -357,40 +357,8 @@ For more information about exception handling methods, please refer to the [Erro
 
 * **Structured Outputs**
 
-**Scenario**: You are building a user feedback analysis workflow on Dify. The LLM node needs to read user reviews and return standardized ratings and comments in a consistent format for downstream nodes to process.
+**Case: Customer Information Intake Form**
 
-**Solution**: In your workflow’s LLM node, you can use the JSON Schema Editor to define a structured format. This ensures the LLM generates results in a strict predefined format instead of unstructured text.
+Watch the following video to learn how to use JSON Schema Editor to collect customer information:
 
-1. Define your output structure in the JSON Schema Editor:
-
-```
-{
-  "type": "object",
-  "properties": {
-    "rating": {
-      "type": "integer",
-      "description": "user's rating"
-    },
-    "comment": {
-      "type": "string",
-      "description": "user's comments"
-    }
-  },
-  "required": ["rating", "comment"]
-}
-```
-
-2. Test it with a review in your Start node:
-
-  > “This product is excellent!”
-
-3. The LLM node will return a clean, structured response:
-
-```
-{
-  "structured_output": {
-    "comment": "This product is excellent!",
-    "rating": 5
-  }
-}
-```
+{% embed url="https://youtu.be/u8NQFxrsaW0" %}
