@@ -519,6 +519,11 @@ Flask 调试模式，开启可在接口输出 trace 信息，方便调试。
 
     如：`http://unstructured:8000/general/v0/general`
 
+*   TOP_K_MAX_VALUE
+
+    RAG 的最大 top-k 值，默认值为 10。
+
+
 #### 多模态模型配置
 
 *   MULTIMODAL\_SEND\_IMAGE\_FORMAT

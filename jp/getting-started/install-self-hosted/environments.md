@@ -532,6 +532,10 @@ dockerイメージまたはdocker-composeによる起動時にのみ有効です
 
     例：`http://unstructured:8000/general/v0/general`
 
+* TOP_K_MAX_VALUE
+
+    RAG の最大の上位 k 値。デフォルトは 10。
+
 #### マルチモーダルモデル設定
 
 *   MULTIMODAL\_SEND\_IMAGE\_FORMAT

@@ -539,6 +539,10 @@ Used to store uploaded data set files, team/tenant encryption keys, and other fi
 
   For example: `http://unstructured:8000/general/v0/general`
 
+- TOP_K_MAX_VALUE
+  
+  The maximum top-k value of RAG, default 10.
+
 #### Multi-modal Configuration
 
 - MULTIMODAL_SEND_IMAGE_FORMAT

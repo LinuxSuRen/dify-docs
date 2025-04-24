@@ -1,4 +1,4 @@
-# 私有化部署 Ollama + DeepSeek + Dify，构建你的专属私人 AI 助手
+# 本地私有化部署 Ollama + DeepSeek + Dify，构建你的专属私人 AI 助手
 
 ## 概述
 
