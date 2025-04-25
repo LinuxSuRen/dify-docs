@@ -710,7 +710,7 @@ API サービスによってインターフェース ID 検証にのみ使用さ
 
 ### 文書チャンク長の設定
 
-#### MAXIMUM_CHUNK_TOKEN_LENGTH 
+#### INDEXING_MAX_SEGMENTATION_TOKENS_LENGTH 
 
 文書チャンク長の設定。長文処理時のテキストセグメントサイズを制御するために使用。デフォルト値：500。最大値：4000。
 

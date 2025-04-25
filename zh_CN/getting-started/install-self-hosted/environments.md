@@ -690,7 +690,7 @@ WebApp Url，用于显示文件预览或下载 URL 到前端作为多模型输�
 
 ### 文档分段长度配置
 
-#### MAXIMUM_CHUNK_TOKEN_LENGTH 
+#### INDEXING_MAX_SEGMENTATION_TOKENS_LENGTH 
 
 文档分段长度配置，用于控制处理长文本时的分段大小。默认值：500。最大值：4000。
 
