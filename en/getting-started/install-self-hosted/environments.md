@@ -723,7 +723,7 @@ Used to set the browser policy for session cookies used for identity verificatio
 
 #### INDEXING_MAX_SEGMENTATION_TOKENS_LENGTH 
 
-Configuration for document chunk length. It is used to control the size of text segments when processing long documents. Default: 500. Maximum: 4000.
+Configuration for document chunk length. It is used to control the size of text segments when processing long documents. Default: 4000.
 
 **Larger Chunks**
 - Retain more context within each chunk, ideal for tasks requiring a broader understanding of the text.
