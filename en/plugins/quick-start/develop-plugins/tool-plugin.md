@@ -346,11 +346,11 @@ You can now publish your plugin by uploading it to the [Dify Plugins code reposi
 * [Develop Model Type Plugin](model-plugin/)
 * [Bundle Type Plugin: Package Multiple Plugins](bundle.md)
 
-**Plugins Specification Definition Documentaiton:**
+**Plugins Specification Definition Documentation:**
 
-* [Minifest](../schema-definition/manifest.md)
-* [Endpoint](../schema-definition/endpoint.md)
-* [Reverse Invocation of the Dify Service](../schema-definition/reverse-invocation-of-the-dify-service/)
-* [Tools](../../guides/tools/)
-* [Models](../schema-definition/model/model-schema.md)
-* [Extend Agent Strategy](../schema-definition/agent.md)
+* [Minifest](../../schema-definition/manifest.md)
+* [Endpoint](../../schema-definition/endpoint.md)
+* [Reverse Invocation of the Dify Service](../../schema-definition/reverse-invocation-of-the-dify-service/)
+* [Tools](../../../guides/tools/)
+* [Models](../../schema-definition/model/model-schema.md)
+* [Extend Agent Strategy](../../schema-definition/agent.md)
